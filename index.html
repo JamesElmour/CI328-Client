@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <canvas id="pigm-canvas" width="1280" height="720"></canvas>
+        
+        <script src="engine/ecs/base.js"></script>
+        <script src="engine/utils/logger.js"></script>
+        <script src="engine/utils/keyboard.js"></script>
+        <script src="engine/utils/mouse.js"></script>
+        <script src="engine/utils/camera.js"></script>
+        <script src="engine/utils/rectangle.js"></script>
+        <script src="engine/utils/imageLoader.js"></script>
+        <script src="engine/utils/mapLoader.js"></script>
+        <script src="engine/utils/vector2.js"></script>
+        <script src="engine/utils/scene.js"></script>
+        <script src="engine/ecs/entity.js"></script>
+        <script src="engine/ecs/components/compCreator.js"></script>
+        <script src="engine/ecs/components/component.js"></script>
+        <script src="engine/ecs/components/render/renderComponent.js"></script>
+        <script src="engine/ecs/components/render/sprite.js"></script>
+        <script src="engine/ecs/components/game/playerComponent.js"></script>
+        <script src="engine/ecs/systems/system.js"></script>
+        <script src="engine/ecs/systems/renderSystems/spriteRenderer.js"></script>
+        <script src="engine/ecs/systems/game/playerSystem.js"></script>
+        <script src="engine/pigm.js"></script>
+        <script>
+            new Pigm(document.querySelector("#pigm-canvas"));
+        </script>
+    </body>
+</html>
