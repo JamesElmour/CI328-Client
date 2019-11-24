@@ -7,7 +7,7 @@ class ColliderSystem extends System
 
     create()
     {
-
+        super.create();
     }
 
     process(comp)
@@ -24,6 +24,8 @@ class ColliderSystem extends System
 
                 comp.colliding = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
 
+                //console.log(`Entity collider [${comp.parent.name}] collided with [${o.parent.name}]`);
+                
                 if(comp.colliding)
                     break;
             }

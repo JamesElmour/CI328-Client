@@ -9,6 +9,7 @@ class System extends Base
     {
         this.components = this.getOpt("components", Array);
         this.dirty = this.getOpt("dirty", Boolean, false);
+        this.dt = this.getOpt("dt", Number);
 
         super.create();
     }
@@ -47,8 +48,10 @@ class System extends Base
     /**
      * Cycles through each component for processing.
      */
-    cycle()
+    cycle(dt)
     {
+        this.dt = -dt;
+        
         if(this.dirty)
         {
             this.sort();

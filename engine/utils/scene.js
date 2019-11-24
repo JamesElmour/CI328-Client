@@ -13,17 +13,20 @@ class Scene extends Base
         this.systems = this.getOpt("systems", Array);
         this.speed =  this.getOpt("speed", Number, (1000/60));
         this.canvas = this.getOpt("canvas");
-        this.context = this.canvas.getContext("2d");
+        this.canvasContext = this.canvas.getContext('2d');
+        this.bufferCanvas = this.getOpt("bufferCanvas");
+        this.context = this.bufferCanvas.getContext("2d");
         this.cycling = this.getOpt("cycling", Boolean, true);
         this.il = this.getOpt("il", Object);
         this.loadImages();
         this.keyboard = this.getOpt("keyboard", Object, new Keyboard({}));
         this.mouse = this.getOpt("mouse", Object, new Mouse({canvas: this.canvas}));
         this.camera = this.getOpt("camera", Camera, new Camera({mouse: this.mouse}));
+        this.lastStep = this.getOpt("lastTime", Number);
 
         let opts = {
-            tsUrl: "http://localhost/Game/assets/tilesets/Debug.json",
-            mapUrl: "http://localhost/Game/assets/maps/TestMap.json",
+            tsUrl: "http://uglyaks.com/apps/Game2/assets/tilesets/Debug.json",
+            mapUrl: "http://uglyaks.com/apps/Game2/assets/maps/TestMap.json",
             il: this.il
         };
         this.ml = this.getOpt("ml", Object, new MapLoader(opts));
@@ -39,8 +42,20 @@ class Scene extends Base
         let checkLoad = () => window.setTimeout(() => this.ml.ready ? finishCreate() : checkLoad(), 10);
         checkLoad();
 
+        window.scene = this;
+        requestAnimationFrame(this.switchBuffer);
 
         super.create();
+    }
+    
+    switchBuffer(step)
+    {
+        window.scene.canvasContext.drawImage(window.scene.bufferCanvas, 0, 0);
+        
+        let dt = -(step - window.scene.lastStep) / 1000.0;
+        window.scene.lastStep = step;
+        window.scene.cycleSystems(dt);
+        requestAnimationFrame(window.scene.switchBuffer);
     }
 
     /**
@@ -56,11 +71,13 @@ class Scene extends Base
      */
     createSystems()
     {
-        this.spriteRenderer = new SpriteRenderer({canvas: this.canvas, camera: this.camera});
+        this.spriteRenderer = new SpriteRenderer({canvas: this.bufferCanvas, camera: this.camera});
         this.playerSystem = new PlayerSystem({keyboard: this.keyboard});
+        this.colliderSystem = new ColliderSystem({});
         
         this.systems.push(this.spriteRenderer);
         this.systems.push(this.playerSystem);
+        this.systems.push(this.colliderSystem);
     }
 
     /**
@@ -91,32 +108,56 @@ class Scene extends Base
         }
     }
 
+    /**
+     *  Create the player for the scene.
+     */
     createPlayer()
     {
         let e = new Entity({position: new Vector2(100, 100)});
-        let p = new Player({Camera: this.camera, parent: e});
+        let p = e.createComponent(Player, {Camera: this.camera, parent: e});
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
+        let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 64, height: 64});
+        let c = e.createComponent(Collider, {rect: r});
 
-        e.addComponent(p);
         this.playerSystem.addComponent(p);
         this.spriteRenderer.addComponent(s);
+        this.colliderSystem.addComponent(c);
+        
+        e = new Entity({position: new Vector2(100, 200)});
+        s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
+        r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 64, height: 64});
+        c = e.createComponent(Collider, {rect: r, static: true});
+        this.spriteRenderer.addComponent(s);
+        this.colliderSystem.addComponent(c);
     }
 
     /**
      * Cycle through each system.
      */
-    cycleSystems()
+    cycleSystems(dt)
     {
-        this.clearScreen();
+        /*window.setTimeout(() => this.cycling ? this.cycleSystems() : false, 1)*/
+        let t = this.lastTime - Date.now();
+        
+        /*if(t < -this.speed)
+        {*/
+            //console.log(`Frame time: [${t}]`);
 
-        for (const [key, system] of Object.entries(this.systems))
-        {
-            system.cycle();
-        }
+            // Cycle buffer
+            //this.canvasContext.drawImage(this.bufferCanvas, 0, 0);
+            
+            this.clearScreen();
 
-        this.camera.update();
+            for (const [key, system] of Object.entries(this.systems))
+            {
+                system.cycle(dt);
+            }
 
-        window.setTimeout(() => this.cycling ? this.cycleSystems() : false, this.speed);
+            this.lastTime = Date.now();
+            this.camera.update();
+        //}
+        
+        this.lastTime = Date.now();
     }
 
     /**
