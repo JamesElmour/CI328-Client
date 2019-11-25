@@ -27,6 +27,9 @@ class Camera extends Base
         matrix.x -= (300 * (this.mouse.position.x - 640) / 640);
         matrix.y -= ((300 / 640) * 360) * ((this.mouse.position.y - 360) / 360);
 
+        matrix.x = Math.round(matrix.x);
+        matrix.y = Math.round(matrix.y);
+
         return matrix;
     }
 }

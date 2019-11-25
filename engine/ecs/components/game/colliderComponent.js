@@ -12,6 +12,7 @@ class Collider extends Component
         this.rect = this.getOpt("rect", Object, this.parent.createComponent(Rectangle, {}));
         this.static = this.getOpt("static", Boolean);
         this.colliding = this.getOpt("colliding", Boolean);
+        this.collidedWith = this.getOpt("collidedWith", Array);
         
         super.create();
     }

@@ -118,7 +118,7 @@ class Scene extends Base
         let e = new Entity({position: new Vector2(100, 100)});
         let p = e.createComponent(Player, {Camera: this.camera, parent: e});
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
-        let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 64, height: 64});
+        let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
         let c = e.createComponent(Collider, {rect: r});
         r = e.createComponent(RigidBody, {});
 
@@ -129,7 +129,7 @@ class Scene extends Base
         
         e = new Entity({position: new Vector2(100, 200)});
         s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
-        r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 64, height: 64});
+        r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
         c = e.createComponent(Collider, {rect: r, static: true});
         this.spriteRenderer.addComponent(s);
         this.colliderSystem.addComponent(c);

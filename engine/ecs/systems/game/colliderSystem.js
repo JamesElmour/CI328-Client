@@ -10,6 +10,11 @@ class ColliderSystem extends System
         super.create();
     }
 
+    preprocess(comp)
+    {
+        comp.collidedWith = [];
+    }
+
     process(comp)
     {
         comp.colliding = false;
@@ -22,12 +27,18 @@ class ColliderSystem extends System
             {
                 let o = c[x];
 
-                comp.colliding = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
+                if(comp.collidedWith.indexOf(o) === -1 && o !== comp)
+                {
+                    comp.colliding = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
+                    
+                    if(comp.colliding)
+                    {
+                        console.log(`Entity collider [${comp.parent.name}] collided with [${o.parent.name}]`);
 
-                //console.log(`Entity collider [${comp.parent.name}] collided with [${o.parent.name}]`);
-                
-                if(comp.colliding)
-                    break;
+                        comp.collidedWith.push(o);
+                        o.collidedWith.push(o);
+                    }
+                }
             }
         }
     }

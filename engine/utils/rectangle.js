@@ -7,16 +7,29 @@ class Rectangle extends Base
 
     create()
     {
+        super.create();
+        
         this.parent = this.getOpt("parent");
-        this.x = this.getOpt("x", Number);
-        this.y = this.getOpt("y", Number);
+
+        let p = this.parent.position;
+        this.x = this.getOpt("x", Number, p.x);
+        this.y = this.getOpt("y", Number, p.y);
         this.width = this.getOpt("width", Number);
         this.height = this.getOpt("height", Number);
-        this.x1 = this.getOpt("x", Number, this.x);
-        this.y1 = this.getOpt("y", Number, this.y);
-        this.x2 = this.getOpt("x2", Number, (this.x + this.width));
-        this.y2 = this.getOpt("y2", Number, (this.y + this.height));
-        super.create();
+
+        this.update();
+    }
+
+    update()
+    {
+        let p = this.parent.position;
+
+        this.x = p.x;
+        this.y = p.y;
+        this.x1 = this.x;
+        this.y1 = this.y;
+        this.x2 = (this.x + this.width);
+        this.y2 = (this.y + this.height)
     }
 
     /**
@@ -25,10 +38,13 @@ class Rectangle extends Base
      */
     intersects(other)
     {
-        if (this.x < other.x + other.width &&
-            this.x + this.width > other.x &&
-            this.y < other.y + other.height &&
-            this.y + this.height > other.y) {
+        this.update();
+        other.update();
+
+        if (this.x1 < other.x2 &&
+            this.x2 > other.x1 &&
+            this.y1 < other.y2 &&
+            this.y2 > other.y1) {
              return true;
          }
 

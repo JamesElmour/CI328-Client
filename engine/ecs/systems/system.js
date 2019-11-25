@@ -60,11 +60,21 @@ class System extends Base
 
         for(let i = 0; i < this.components.length; i++)
         {
+            this.preprocess(this.components[i]);
+        }
+
+        for(let i = 0; i < this.components.length; i++)
+        {
             this.process(this.components[i]);
         }
     }
 
     sort()
+    {
+
+    }
+
+    preprocess(comp)
     {
 
     }
