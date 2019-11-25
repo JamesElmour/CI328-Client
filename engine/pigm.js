@@ -6,7 +6,7 @@ class Pigm
         this.bufferCanvas = bufferCanvas;
         this.Log = new Logger();
         this.Log.write("PIGM.js Created.")
-        let il = new ImageLoader({baseUrl: "http://uglyaks.com/apps/Game2/assets/images/"});
+        let il = new ImageLoader({baseUrl: window.location.href + "/assets/images/"});
 
         this.loaded(il);
     }

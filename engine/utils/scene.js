@@ -25,8 +25,8 @@ class Scene extends Base
         this.lastStep = this.getOpt("lastTime", Number);
 
         let opts = {
-            tsUrl: "http://uglyaks.com/apps/Game2/assets/tilesets/Debug.json",
-            mapUrl: "http://uglyaks.com/apps/Game2/assets/maps/TestMap.json",
+            tsUrl: window.location.href + "/assets/tilesets/Debug.json",
+            mapUrl: window.location.href + "/assets/maps/TestMap.json",
             il: this.il
         };
         this.ml = this.getOpt("ml", Object, new MapLoader(opts));
