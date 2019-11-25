@@ -15,28 +15,32 @@ class PlayerSystem extends System
     process(comp)
     {
         let e = comp.parent;
-        let p = e.position;
+        let r = e.getComponent(RigidBody);
+        let v = r.velocity;
+        let s = comp.speed;
+
+        v = new Vector2(0, 0);
 
         if(this.keyboard.key(65))
         {
-            p.x -= comp.speed * this.dt;
+            v.x = -s;
         }
 
         if(this.keyboard.key(68))
         {
-            p.x += comp.speed * this.dt;
+            v.x = s;
         }
 
         if(this.keyboard.key(87))
         {
-            p.y -= comp.speed * this.dt;
+            v.y = -s;
         }
 
         if(this.keyboard.key(83))
         {
-            p.y += comp.speed * this.dt;
+            v.y = s;
         }
 
-        e.position = p;
+        r.velocity = v;
     }
 }

@@ -7,7 +7,7 @@ class Player extends Component
 
     create()
     {
-        this.speed = this.getOpt("Speed", Number, 450);
+        this.speed = this.getOpt("Speed", Number, 500);
         this.camera = this.getOpt("Camera");
 
         super.create();

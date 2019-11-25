@@ -27,7 +27,7 @@ class Entity extends Base
      */
     addComponent(comp)
     {
-        this.components[typeof comp] = comp;
+        this.components[comp.constructor.name] = comp;
 
         console.log(`Added [${comp.constructor.name}] to [${this.getOpt("name")}] with value [${comp.toString()}]`);
     }
@@ -38,7 +38,7 @@ class Entity extends Base
      */
     getComponent(compClass)
     {
-        return this.components[typeof compClass];
+        return this.components[compClass.name];
     }
 
     createComponent(compClass, opts)
