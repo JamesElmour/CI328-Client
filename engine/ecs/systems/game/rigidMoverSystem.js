@@ -12,6 +12,8 @@ class RigidMover extends System
         let v = comp.velocity;
         let d = comp.drag;
 
+        comp.previous = new Vector2(p.x, p.y);
+
         v.x = v.x * (1 - (d.x * this.dt));
         v.y = v.y * (1 - (d.y * this.dt));
 

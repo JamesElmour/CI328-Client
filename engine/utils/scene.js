@@ -75,9 +75,11 @@ class Scene extends Base
         this.playerSystem = new PlayerSystem({keyboard: this.keyboard});
         this.colliderSystem = new ColliderSystem({});
         this.rigidMover = new RigidMover({});
+        this.rigidChecker = new RigidChecker({mover: this.rigidMover});
         
         this.systems.push(this.playerSystem);
         this.systems.push(this.colliderSystem);
+        this.systems.push(this.rigidChecker);
         this.systems.push(this.rigidMover);
         this.systems.push(this.spriteRenderer);
     }
@@ -120,7 +122,7 @@ class Scene extends Base
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
         let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
         let c = e.createComponent(Collider, {rect: r});
-        r = e.createComponent(RigidBody, {});
+        r = e.createComponent(RigidBody, {collider: c});
 
         this.playerSystem.addComponent(p);
         this.spriteRenderer.addComponent(s);

@@ -26,10 +26,10 @@ class Rectangle extends Base
 
         this.x = p.x;
         this.y = p.y;
-        this.x1 = this.x;
-        this.y1 = this.y;
-        this.x2 = (this.x + this.width);
-        this.y2 = (this.y + this.height)
+        this.x1 = Math.round(this.x);
+        this.y1 = Math.round(this.y);
+        this.x2 = Math.round(this.x + this.width);
+        this.y2 = Math.round(this.y + this.height)
     }
 
     /**
