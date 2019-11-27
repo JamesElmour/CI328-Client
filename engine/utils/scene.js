@@ -76,11 +76,13 @@ class Scene extends Base
         this.colliderSystem = new ColliderSystem({});
         this.rigidMover = new RigidMover({});
         this.rigidChecker = new RigidChecker({mover: this.rigidMover});
+        this.doorSystem = new DoorSystem({});
         
         this.systems.push(this.playerSystem);
         this.systems.push(this.colliderSystem);
         this.systems.push(this.rigidChecker);
         this.systems.push(this.rigidMover);
+        this.systems.push(this.doorSystem);
         this.systems.push(this.spriteRenderer);
     }
 
@@ -117,6 +119,16 @@ class Scene extends Base
 
                 this.colliderSystem.addComponent(c);
             }
+
+            if(cs.layer === "Doors")
+            {
+                let r = entity.createComponent(Rectangle, {width: 64, height: 64});
+                let c = entity.createComponent(Collider, {rect: r, static: false});
+                let d = entity.createComponent(Door, {collider: c});
+
+                this.colliderSystem.addComponent(c);
+                this.doorSystem.addComponent(d);
+            }
         }
     }
 
@@ -129,7 +141,7 @@ class Scene extends Base
         let p = e.createComponent(Player, {Camera: this.camera, parent: e});
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
         let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
-        let c = e.createComponent(Collider, {rect: r});
+        let c = e.createComponent(Collider, {rect: r, static: false});
         r = e.createComponent(RigidBody, {collider: c});
 
         this.playerSystem.addComponent(p);
@@ -139,10 +151,12 @@ class Scene extends Base
         
         e = new Entity({position: new Vector2(100, 200)});
         s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
-        r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
-        c = e.createComponent(Collider, {rect: r, static: true});
+        r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 50, height: 50});
+        c = e.createComponent(Collider, {rect: r, static: false});
+        let d = e.createComponent(Door, {collider: c});
         this.spriteRenderer.addComponent(s);
         this.colliderSystem.addComponent(c);
+        this.doorSystem.addComponent(d);
     }
 
     /**

@@ -17,6 +17,7 @@ class Entity extends Base
         this.position = this.getOpt("position", Vector2);
         this.name = this.getOpt("name");
         this.components = {};
+        this.tags = this.getOpt("tags");
 
         super.logCreation();
     }
@@ -50,5 +51,16 @@ class Entity extends Base
         this.addComponent(c);
 
         return c;
+    }
+
+    hasTag(tag)
+    {
+        return this.tags.indexOf(tag) !== -1; 
+    }
+
+    addTag(tag)
+    {
+        if(!this.hasTag(tag))
+            this.tags.push(tag);
     }
 }

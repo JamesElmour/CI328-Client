@@ -13,12 +13,12 @@ class ColliderSystem extends System
     preprocess(comp)
     {
         comp.collidedWith = [];
+        comp.staticCollision = true;
+        comp.colliding = false;
     }
 
     process(comp)
     {
-        comp.colliding = false;
-
         if(!comp.static)
         {
             let c = this.components;
@@ -29,14 +29,32 @@ class ColliderSystem extends System
 
                 if(comp.collidedWith.indexOf(o) === -1 && o !== comp)
                 {
-                    comp.colliding = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
+                    let col = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
                     
-                    if(comp.colliding)
+                    if(col)
                     {
                         console.log(`Entity collider [${comp.parent.name}] collided with [${o.parent.name}]`);
 
-                        comp.collidedWith.push(o);
-                        o.collidedWith.push(o);
+                        if(comp.static)
+                        {
+                            o.collidedWith.push(o);
+                        }
+                        else
+                        {
+                            o.staticCollision = false;
+                        }
+                    
+                        if(o.static)
+                        {
+                            comp.collidedWith.push(o);
+                        }
+                        else
+                        {
+                            comp.staticCollision = false;
+                        }
+
+                        comp.colliding = true;
+                        o.colliding = true;
                     }
                 }
             }

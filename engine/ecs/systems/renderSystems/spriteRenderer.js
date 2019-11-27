@@ -16,11 +16,14 @@ class SpriteRenderer extends System
 
     process(comp)
     {
-        let matrix = this.camera.getMatrix();
-        let pos = comp.parent.position;
-        let image = comp.image;
+        if(comp.visible)
+        {
+            let matrix = this.camera.getMatrix();
+            let pos = comp.parent.position;
+            let image = comp.image;
 
-        let drawPos = new Vector2(pos.x + matrix.x, pos.y + matrix.y);
-        this.canvas.getContext("2d").drawImage(image, drawPos.x, drawPos.y);
+            let drawPos = new Vector2(pos.x + matrix.x, pos.y + matrix.y);
+            this.canvas.getContext("2d").drawImage(image, drawPos.x, drawPos.y);
+        }
     }
 }

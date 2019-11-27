@@ -8,6 +8,7 @@ class RenderComponent extends Component
     create()
     {
         this.position = this.getOpt("position", Vector2);
+        this.visible = this.getOpt("visible", Boolean, true);
 
         super.create();
     }
