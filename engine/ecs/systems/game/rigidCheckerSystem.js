@@ -53,8 +53,9 @@ class RigidChecker extends System
 
             let cv = new Vector2(p.x - op.x, p.y - op.y); // Collision vector
             let cm = Math.abs(cv.x) + Math.abs(cv.y); // Collision magnitude
-            cv.x = Math.round(cv.x / cm);
-            cv.y = Math.round(cv.y / cm);
+            cv.x = (cv.x / cm);
+            cv.y = (cv.y / cm);
+            cv = cv.round();
 
             v.x = (cv.x == 0) ? v.x : this.solve(cv.x, v.x);
             v.y = (cv.y == 0) ? v.y : this.solve(cv.y, v.y);
