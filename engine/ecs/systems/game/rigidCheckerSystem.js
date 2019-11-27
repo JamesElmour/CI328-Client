@@ -26,21 +26,12 @@ class RigidChecker extends System
         if(c.length !== 0)
         {
             let v = comp.velocity;
-            let p = comp.previous;
-            let s = new Vector2(Math.sign(v.x), Math.sign(v.y));
-            p.x -= s.x * (Math.abs(v.x) / 75);
-            p.y -= s.y * (Math.abs(v.y) / 75);
-
-            p.x = (s.x === -1) ? Math.ceil(p.x) : Math.floor(p.x);
-            p.y = (s.y === -1) ? Math.ceil(p.y) : Math.floor(p.y);
-
-            //comp.parent.position = p;
-            
+            let p = comp.previous;            
             let o = c[0];
             let op = o.parent.position;
 
-            let cv = new Vector2(p.x - op.x, p.y - op.y);
-            let cm = Math.abs(cv.x) + Math.abs(cv.y);
+            let cv = new Vector2(p.x - op.x, p.y - op.y); // Collision vector
+            let cm = Math.abs(cv.x) + Math.abs(cv.y); // Collision magnitude
             cv.x = Math.round(cv.x / cm);
             cv.y = Math.round(cv.y / cm);
 
