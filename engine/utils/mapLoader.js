@@ -111,7 +111,7 @@ class MapLoader extends Base
                     let y = 64 * Math.floor(t / this.height) + 32;
                     let pos = new Vector2(x, y);
                     
-                    this.sprites.push({position: pos, sprite: this.tiles[d - 1]});
+                    this.sprites.push({position: pos, sprite: this.tiles[d - 1], layer: layer.name});
                     console.log(`Parsing tile [${t}] at [${pos.toString()}] with [${d}][${this.tiles[d - 1]}]`);
                 }
             }

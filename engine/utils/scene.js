@@ -109,6 +109,14 @@ class Scene extends Base
             this.spriteRenderer.addComponent(sprite);
 
             entity.addComponent(sprite);
+
+            if(cs.layer === "Wall")
+            {
+                let r = entity.createComponent(Rectangle, {width: 64, height: 64});
+                let c = entity.createComponent(Collider, {rect: r, static: true});
+
+                this.colliderSystem.addComponent(c);
+            }
         }
     }
 
@@ -142,26 +150,17 @@ class Scene extends Base
      */
     cycleSystems(dt)
     {
-        /*window.setTimeout(() => this.cycling ? this.cycleSystems() : false, 1)*/
         let t = this.lastTime - Date.now();
-        
-        /*if(t < -this.speed)
-        {*/
-            //console.log(`Frame time: [${t}]`);
-
-            // Cycle buffer
-            //this.canvasContext.drawImage(this.bufferCanvas, 0, 0);
             
-            this.clearScreen();
+        this.clearScreen();
 
-            for (const [key, system] of Object.entries(this.systems))
-            {
-                system.cycle(dt);
-            }
+        for (const [key, system] of Object.entries(this.systems))
+        {
+            system.cycle(dt);
+        }
 
-            this.lastTime = Date.now();
-            this.camera.update();
-        //}
+        this.lastTime = Date.now();
+        this.camera.update();
         
         this.lastTime = Date.now();
     }
