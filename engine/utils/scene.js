@@ -64,6 +64,7 @@ class Scene extends Base
     loadImages()
     {
         this.il.loadImage("entities/player/debug.png");
+        this.il.loadImage("projectiles/basic.png");
     }
 
     /**
@@ -72,13 +73,17 @@ class Scene extends Base
     createSystems()
     {
         this.spriteRenderer = new SpriteRenderer({canvas: this.bufferCanvas, camera: this.camera});
-        this.playerSystem = new PlayerSystem({keyboard: this.keyboard});
+        this.playerSystem = new PlayerSystem({keyboard: this.keyboard, mouse: this.mouse});
         this.colliderSystem = new ColliderSystem({});
         this.rigidMover = new RigidMover({});
         this.rigidChecker = new RigidChecker({mover: this.rigidMover});
         this.doorSystem = new DoorSystem({});
+        this.gunSystem = new GunSystem({});
+        this.bulletSystem = new BulletSystem({});
         
         this.systems.push(this.playerSystem);
+        this.systems.push(this.gunSystem);
+        this.systems.push(this.bulletSystem);
         this.systems.push(this.colliderSystem);
         this.systems.push(this.rigidChecker);
         this.systems.push(this.rigidMover);
@@ -114,6 +119,7 @@ class Scene extends Base
 
             if(cs.layer === "Wall")
             {
+                entity.tag = "Wall";
                 let r = entity.createComponent(Rectangle, {width: 64, height: 64});
                 let c = entity.createComponent(Collider, {rect: r, static: true});
 
@@ -137,8 +143,9 @@ class Scene extends Base
      */
     createPlayer()
     {
-        let e = new Entity({position: new Vector2(100, 100)});
-        let p = e.createComponent(Player, {Camera: this.camera, parent: e});
+        let e = new Entity({position: new Vector2(100, 100), tag: "player"});
+        let g = e.createComponent(Gun, {bullet: new Bullet({ignore: ["player"]})})
+        let p = e.createComponent(Player, {name: "player", tag: "player", Camera: this.camera, parent: e, gun: g});
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
         let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
         let c = e.createComponent(Collider, {rect: r, static: false});
@@ -148,7 +155,8 @@ class Scene extends Base
         this.spriteRenderer.addComponent(s);
         this.colliderSystem.addComponent(c);
         this.rigidMover.addComponent(r);
-        
+        this.gunSystem.addComponent(g);
+
         e = new Entity({position: new Vector2(100, 200)});
         s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
         r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 50, height: 50});
@@ -177,6 +185,8 @@ class Scene extends Base
         this.camera.update();
         
         this.lastTime = Date.now();
+
+        this.mouse.reset();
     }
 
     /**

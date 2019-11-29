@@ -1,5 +1,9 @@
 class Sprite extends RenderComponent
 {
+    /**
+     * 
+     * @param {Object} image (from il) 
+     */
     constructor(opts)
     {
         super(opts);

@@ -27,7 +27,7 @@ class ColliderSystem extends System
             {
                 let o = c[x];
 
-                if(comp.collidedWith.indexOf(o) === -1 && o !== comp)
+                if(comp.collidedWith.indexOf(o) === -1 && o !== comp && !comp.ignore.includes(o.parent.tag) && !o.ignore.includes(comp.parent.tag))
                 {
                     let col = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
                     

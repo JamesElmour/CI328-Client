@@ -25,4 +25,16 @@ class Vector2 extends Base
 
         return v;
     }
+
+    abs()
+    {
+        return new Vector2(Math.abs(this.x), Math.abs(this.y));
+    }
+
+    normalize()
+    {
+        let v = this.abs();
+        let m = v.x + v.y
+        return new Vector2(this.x / m, this.y / m);
+    }
 }

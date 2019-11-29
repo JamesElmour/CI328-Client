@@ -16,8 +16,9 @@ class Entity extends Base
     {
         this.position = this.getOpt("position", Vector2);
         this.name = this.getOpt("name");
-        this.components = {};
-        this.tags = this.getOpt("tags");
+        this.components = this.getOpt("components", Object);
+        this.tag = this.getOpt("tag", String);
+        this.destroy = this.getOpt("destroy", Boolean);
 
         super.logCreation();
     }

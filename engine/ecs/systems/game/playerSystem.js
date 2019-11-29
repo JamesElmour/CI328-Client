@@ -8,6 +8,7 @@ class PlayerSystem extends System
     create()
     {
         this.keyboard = this.getOpt("keyboard");
+        this.mouse = this.getOpt("mouse");
 
         super.create();
     }
@@ -39,6 +40,12 @@ class PlayerSystem extends System
         if(this.keyboard.key(83))
         {
             v.y = s;
+        }
+
+        if(this.mouse.left)
+        {
+            comp.gun.fire = true;
+            comp.gun.direction = window.scene.mouse.directionTo(e.position).normalize();
         }
 
         r.velocity = v;

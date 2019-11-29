@@ -13,6 +13,7 @@ class Collider extends Component
         this.static = this.getOpt("static", Boolean);
         this.colliding = this.getOpt("colliding", Boolean);
         this.collidedWith = this.getOpt("collidedWith", Array);
+        this.ignore = this.getOpt("ignore", Array);
         this.staticCollision = this.getOpt("staticCollision", Boolean);
         this.trigger = this.getOpt("trigger", Boolean);
         

@@ -58,10 +58,23 @@ class System extends Base
             this.dirty = false;
         }
 
+        let tempComps = this.components.slice(0);
+
         for(let i = 0; i < this.components.length; i++)
         {
-            this.preprocess(this.components[i]);
+            let c = this.components[i];
+
+            if(c.parent.destroy)
+            {
+                tempComps.splice(i, 1);
+            }
+            else
+            {
+                this.preprocess(c);
+            }
         }
+
+        this.components = tempComps;
 
         for(let i = 0; i < this.components.length; i++)
         {
