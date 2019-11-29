@@ -81,9 +81,9 @@ class Scene extends Base
         this.gunSystem = new GunSystem({});
         this.bulletSystem = new BulletSystem({});
         
-        this.systems.push(this.playerSystem);
         this.systems.push(this.gunSystem);
         this.systems.push(this.bulletSystem);
+        this.systems.push(this.playerSystem);
         this.systems.push(this.colliderSystem);
         this.systems.push(this.rigidChecker);
         this.systems.push(this.rigidMover);

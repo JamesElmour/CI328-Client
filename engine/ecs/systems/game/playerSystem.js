@@ -47,6 +47,10 @@ class PlayerSystem extends System
             comp.gun.fire = true;
             comp.gun.direction = window.scene.mouse.directionTo(e.position).normalize();
         }
+        else
+        {
+            comp.gun.fire = false;
+        }
 
         r.velocity = v;
     }
