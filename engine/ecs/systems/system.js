@@ -76,6 +76,8 @@ class System extends Base
 
         this.components = tempComps;
 
+        this.precheck();
+
         for(let i = 0; i < this.components.length; i++)
         {
             this.process(this.components[i]);
@@ -83,6 +85,11 @@ class System extends Base
     }
 
     sort()
+    {
+
+    }
+
+    precheck()
     {
 
     }

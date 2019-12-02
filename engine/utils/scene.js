@@ -31,6 +31,8 @@ class Scene extends Base
         };
         this.ml = this.getOpt("ml", Object, new MapLoader(opts));
 
+        window.scene = this;
+
         this.createSystems();
 
         let finishCreate = () => 
