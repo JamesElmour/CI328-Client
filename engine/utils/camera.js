@@ -32,4 +32,22 @@ class Camera extends Base
 
         return matrix;
     }
+
+    distanceToFollowing(pos)
+    {
+        let p = this.following.position;
+
+        return Math.sqrt(Math.pow(pos.x - p.x, 2) + Math.pow(pos.y - p.y, 2));
+    }
+
+    directionToFollowing(v)
+    {
+        let p = this.position.clone();
+        let v2 = v;
+        let d = new Vector2(p.x - v2.x, p.y - v2.y);
+        let m = Math.abs(d.x) + Math.abs(d.y);
+        d = new Vector2(d.x * m, d.y * m);
+
+        return d;
+    }
 }

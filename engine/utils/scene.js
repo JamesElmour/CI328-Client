@@ -66,6 +66,7 @@ class Scene extends Base
     loadImages()
     {
         this.il.loadImage("entities/player/debug.png");
+        this.il.loadImage("entities/enemy/debug.png");
         this.il.loadImage("projectiles/basic.png");
     }
 
@@ -82,10 +83,12 @@ class Scene extends Base
         this.doorSystem = new DoorSystem({});
         this.gunSystem = new GunSystem({});
         this.bulletSystem = new BulletSystem({});
+        this.enemySystem = new EnemySystem({});
         
         this.systems.push(this.gunSystem);
         this.systems.push(this.bulletSystem);
         this.systems.push(this.playerSystem);
+        this.systems.push(this.enemySystem);
         this.systems.push(this.colliderSystem);
         this.systems.push(this.rigidChecker);
         this.systems.push(this.rigidMover);
@@ -148,7 +151,7 @@ class Scene extends Base
     createPlayer()
     {
         let e = new Entity({position: new Vector2(100, 100), tag: "player"});
-        let g = e.createComponent(Gun, {bullet: new Bullet({ignore: ["player"]})})
+        let g = e.createComponent(Gun, {bullet: new Bullet({ignore: ["player"]})});
         let p = e.createComponent(Player, {name: "player", tag: "player", Camera: this.camera, parent: e, gun: g});
         let s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
         let r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 32, height: 32});
@@ -161,14 +164,17 @@ class Scene extends Base
         this.rigidMover.addComponent(r);
         this.gunSystem.addComponent(g);
 
-        e = new Entity({position: new Vector2(100, 200)});
-        s = e.createComponent(Sprite, {image: this.il.getImage("entities/player/debug.png")});
+        e = new Entity({position: new Vector2(1100, 450), tag: "enemy"});
+        s = e.createComponent(Sprite, {image: this.il.getImage("entities/enemy/debug.png")});
         r = e.createComponent(Rectangle, {x: e.position.x, y: e.position.y, width: 50, height: 50});
         c = e.createComponent(Collider, {rect: r, static: false});
-        let d = e.createComponent(Door, {collider: c});
+        g = e.createComponent(Gun, {cooldown: 450, bullet: new Bullet({ignore: ["enemy"]})});
+        let ai = e.createComponent(Enemy, {gun: g});
+
         this.spriteRenderer.addComponent(s);
         this.colliderSystem.addComponent(c);
-        this.doorSystem.addComponent(d);
+        this.enemySystem.addComponent(ai);
+        this.gunSystem.addComponent(g);
     }
 
     /**
