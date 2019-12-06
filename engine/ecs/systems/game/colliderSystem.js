@@ -27,22 +27,13 @@ class ColliderSystem extends System
             {
                 let o = c[x];
 
-                if(comp.collidedWith.indexOf(o) === -1 && o !== comp && !comp.ignore.includes(o.parent.tag) && !o.ignore.includes(comp.parent.tag))
+                if(comp.collidedWith.indexOf(o) === -1 && o !== comp && !comp.ignore.includes(o.parent.tag))
                 {
-                    let col = (comp.rect.intersects(o.rect)) ? true : o.rect.intersects(comp.rect);
+                    let col = comp.rect.intersects(o.rect)
                     
                     if(col)
                     {
                         console.log(`Entity collider [${comp.parent.name}] collided with [${o.parent.name}]`);
-
-                        if(comp.static)
-                        {
-                            o.collidedWith.push(o);
-                        }
-                        else
-                        {
-                            o.staticCollision = false;
-                        }
                     
                         if(o.static)
                         {
@@ -54,7 +45,6 @@ class ColliderSystem extends System
                         }
 
                         comp.colliding = true;
-                        o.colliding = true;
                     }
                 }
             }

@@ -30,7 +30,7 @@ class GunSystem extends System
             e.position.y += 16;
 
             let b = c.bullet.clone();
-            b.ignore.push("bullet");
+            b.ignore.push("bullet", "player");
             b.parent = e;
 
             let s = e.createComponent(Sprite, {image: window.scene.il.getImage("projectiles/basic.png")});

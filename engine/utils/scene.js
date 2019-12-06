@@ -130,8 +130,10 @@ class Scene extends Base
 
             if(cs.layer === "Doors")
             {
+                entity.tag = "door";
                 let r = entity.createComponent(Rectangle, {width: 64, height: 64});
-                let c = entity.createComponent(Collider, {rect: r, static: false});
+                let i = ["bullet"]
+                let c = entity.createComponent(Collider, {rect: r, static: false, ignore: i});
                 let d = entity.createComponent(Door, {collider: c});
 
                 this.colliderSystem.addComponent(c);
