@@ -1,10 +1,21 @@
 <html>
-    <body>
+    <body onclick="startGame()">
         <canvas id="pigm-canvas" width="1280" height="720"></canvas>
         <canvas id="pigm-buffer-canvas" width="1280" height="720" style="display: none;"></canvas>
-        
+        <p>
+            <strong>Click page to start game.</strong>
+        </p>
+        <h4>Will Not Run Locally!</h4>
+        <p>
+            Please ensure that this is running on a hosted server. This game will not run without being hosted due to xcross errors. Does not run in Microsoft Explorer or Microsoft Edge.
+        </p>
+
+        <h4>Attribution</h4>
+        <p>
+            Music: <a href="https://www.youtube.com/watch?v=Qi9koVOLWUw" target="_blank">Power Attack by EMBBIAYO (CC:A)</a>. Visuals: <a href="https://opengameart.org/content/little-angry-robot-drone" target="_blank">Robot Drone by Qubodup</a> (CC:A) and <a href="https://opengameart.org/content/explosion-set-1-m484-games" target="_blank">explosion by Master484</a> (CC:A).
+        </p>
+
         <script src="engine/ecs/base.js"></script>
-        <script src="engine/utils/logger.js"></script>
         <script src="engine/utils/keyboard.js"></script>
         <script src="engine/utils/mouse.js"></script>
         <script src="engine/utils/camera.js"></script>
@@ -18,13 +29,27 @@
         <script src="engine/ecs/components/component.js"></script>
         <script src="engine/ecs/components/render/renderComponent.js"></script>
         <script src="engine/ecs/components/render/sprite.js"></script>
+        <script src="engine/ecs/components/render/font.js"></script>
         <script src="engine/ecs/components/game/playerComponent.js"></script>
         <script src="engine/ecs/components/game/colliderComponent.js"></script>
         <script src="engine/ecs/components/game/rigidbodyComponent.js"></script>
         <script src="engine/ecs/components/game/doorComponent.js"></script>
         <script src="engine/ecs/components/game/bulletComponent.js"></script>
         <script src="engine/ecs/components/game/gunComponent.js"></script>
+        <script src="engine/ecs/components/game/guns/barrels/barrel.js"></script>
+        <script src="engine/ecs/components/game/guns/barrels/standardBarrel.js"></script>
+        <script src="engine/ecs/components/game/guns/barrels/slowEnemyBarrel.js"></script>
+        <script src="engine/ecs/components/game/guns/barrels/playerShotgunBarrel.js"></script>
+        <script src="engine/ecs/components/game/guns/barrels/playerSpreadBarrel.js"></script>
+        <script src="engine/ecs/components/game/guns/triggers/trigger.js"></script>
+        <script src="engine/ecs/components/game/guns/triggers/standardTrigger.js"></script>
+        <script src="engine/ecs/components/game/guns/triggers/slowEnemyTrigger.js"></script>
+        <script src="engine/ecs/components/game/guns/triggers/playerFastTrigger.js"></script>
+        <script src="engine/ecs/components/game/guns/triggers/playerSlowTrigger.js"></script>
         <script src="engine/ecs/components/game/enemyComponent.js"></script>
+        <script src="engine/ecs/components/game/animatorComponent.js"></script>
+        <script src="engine/ecs/components/game/pickupComponent.js"></script>
+        <script src="engine/ecs/components/game/pickups/healthPickup.js"></script>
         <script src="engine/ecs/systems/system.js"></script>
         <script src="engine/ecs/systems/renderSystems/spriteRenderer.js"></script>
         <script src="engine/ecs/systems/game/playerSystem.js"></script>
@@ -35,9 +60,24 @@
         <script src="engine/ecs/systems/game/gunSystem.js"></script>
         <script src="engine/ecs/systems/game/bulletSystem.js"></script>
         <script src="engine/ecs/systems/game/enemySystem.js"></script>
+        <script src="engine/ecs/systems/game/animatorSystem.js"></script>
+        <script src="engine/ecs/systems/game/pickupSystem.js"></script>
+        <script src="engine/ecs/systems/renderSystems/uiRenderer.js"></script>
+        <script src="engine/ecs/systems/renderSystems/fontRenderer.js"></script>
+        <script src="engine/scenes/gameLevel.js"></script>
+        <script src="engine/scenes/mainMenu.js"></script>
+        <script src="engine/scenes/gameOver.js"></script>
         <script src="engine/pigm.js"></script>
         <script>
-            new Pigm(document.querySelector("#pigm-canvas"), document.querySelector("#pigm-buffer-canvas"));
+            let gameStarted = false;
+
+            function startGame()
+            {
+                if(!gameStarted)
+                    new Pigm(document.querySelector("#pigm-canvas"), document.querySelector("#pigm-buffer-canvas"));
+
+                gameStarted = true;
+            }
         </script>
     </body>
 </html>

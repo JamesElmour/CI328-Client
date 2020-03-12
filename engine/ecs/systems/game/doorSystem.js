@@ -1,24 +1,41 @@
+/**
+ * Door system to process all door components.
+ */
 class DoorSystem extends System
 {
-    constructor(opts)
+    /**
+     * Before processing, set door to visible and not open.
+     * @param {Door} door 
+     */
+    preprocess(door)
     {
-        super(opts);
+        door.parent.getComponent(Sprite).visible = true;
+        door.open = false;
     }
 
-    preprocess(comp)
+    /**
+     * Process the current door element.
+     * @param {Door} door 
+     */
+    process(door)
     {
-        comp.parent.getComponent(Sprite).visible = true;
-        comp.open = false;
-    }
-
-    process(comp)
-    {
-        let c = comp.collider;
-
-        if(c.colliding && !c.staticCollision)
+        // If door should open.
+        if(this.shouldOpen(door))
         {
-            c.open = true;
-            c.parent.getComponent(Sprite).visible = false;
+            // Set door to open and invisible.
+            door.open = true;
+            door.parent.getComponent(Sprite).visible = false;
         }
+    }
+
+    /**
+     * Returns if door should open.
+     * @param {Door} door 
+     */
+    shouldOpen(door)
+    {
+        let collider = door.collider;
+        
+        return collider.colliding && !collider.staticCollision
     }
 }

@@ -1,20 +1,17 @@
+/**
+ * Image loader class for loading and getting loaded images.
+ */
 class ImageLoader extends Base
 {
-    constructor(opts)
-    {
-        super(opts);
-
-        this.create();
-    }
-
+    // Get data from opts.
     create()
     {
-        this.images = this.getOpt("images", Object);
-        this.loaded = this.getOpt("loaded", Array);
-        this.loadingIndex = this.getOpt("loadingIndex", Number);
-        this.baseUrl = this.getOpt("baseUrl", String);
+        this.images = this.getOpt("images", Object);                // Loaded images.
+        this.loaded = this.getOpt("loaded", Array);                 // Array of loaded image URLs.
+        this.loadingIndex = this.getOpt("loadingIndex", Number);    // Number of images to load.
+        this.baseUrl = this.getOpt("baseUrl", String);              // Base URL of PIGMjs.
 
-        this.logCreation();
+        super.create();
     }
 
     /**
@@ -23,18 +20,27 @@ class ImageLoader extends Base
      */
     loadImage(url)
     {
+        // Prepare image.
         var image = new Image();
 
+        // Set lambda on load method.
         image.onload = () =>
         {
+            // Add image to loaded images object and array once loaded.
             this.images[image.src] = image;
             this.loaded.push(image.src);
 
-            console.log(`Image [${image.src}] loaded.`);
+            // Log image loaded.
+            this.log(`Image [${image.src}] loaded.`);
+            
+            // Decrease images currently loading.
             this.loadingIndex--;
         };
 
+        // Increase images currently loading.
         this.loadingIndex++;
+
+        // Set image's source URL.
         image.src = this.baseUrl + url;
     }
 

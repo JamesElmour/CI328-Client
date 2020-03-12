@@ -1,43 +1,79 @@
+/**
+ * System to render sprites to the screen.
+ */
 class SpriteRenderer extends System
 {
-    constructor(opts)
-    {
-        super(opts);
-    }
-
+    // Get data from opts.
     create()
     {
+        // Get the scene's canvas and camera.
         this.canvas = this.getOpt("canvas");
         this.camera = this.getOpt("camera");
-        this.oldCamPos = this.camera.clone(); 
 
         super.create();
     }
 
+    // Before all processing and pre-processing is ran.
     precheck()
     {
         super.precheck();
 
+        // Get the camera's matrix.
         this.campos = window.scene.camera.getMatrix();
     }
 
-    process(comp)
+    /**
+     * Process and draw the given sprite.
+     * @param {Sprite} sprite 
+     */
+    process(sprite)
     {
-        if(comp.visible && this.onscreen(comp.parent.position))
+        // If the sprite should be drawn.
+        if(this.shouldDraw(sprite))
         {
-            let matrix = this.camera.getMatrix();
-            let pos = comp.parent.position;
-            let image = comp.image;
-
-            let drawPos = new Vector2(pos.x + matrix.x, pos.y + matrix.y);
-            this.canvas.getContext("2d").drawImage(image, drawPos.x, drawPos.y);
+            // Draw the sprite.
+            this.draw(sprite);
         }
     }
 
-    onscreen(p)
+    /**
+     * Return if the sprite should be drawn to the screen.
+     * @param {Sprite} sprite 
+     */
+    shouldDraw(sprite)
     {
-        if(p.x > (-this.campos.x - 100) && p.x < (-this.campos.x + 1280) &&
-           p.y > (-this.campos.y - 100) && p.y < (-this.campos.y + 720))
+        // True if sprite is visible and on screen.
+        return sprite.visible && this.onscreen(sprite.parent.position);
+    }
+
+    /**
+     * Draw the given sprite.
+     * @param {Sprite} sprite 
+     */
+    draw(sprite)
+    {
+        // Get the sprite's position.
+        let pos = sprite.parent.position;
+
+        // Get the sprite's image.
+        let image = sprite.image;
+
+        // Calculate the drawn position.
+        let drawPos = new Vector2(pos.x + this.campos.x, pos.y + this.campos.y);
+
+        // Draw the sprite to the screen.
+        this.canvas.getContext("2d").drawImage(image, drawPos.x, drawPos.y);
+    }
+
+    /**
+     * Return if the position is on screen.
+     * @param {Vector2} position 
+     */
+    onscreen(position)
+    {
+        // Using camera's position, check if a position is on screen - with some padding.
+        if(position.x > (-this.campos.x - 100) && position.x < (-this.campos.x + 1280) &&
+           position.y > (-this.campos.y - 100) && position.y < (-this.campos.y + 720))
         {
             return true;
         }

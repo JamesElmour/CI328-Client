@@ -11,11 +11,22 @@ class Rectangle extends Base
         
         this.parent = this.getOpt("parent");
 
-        let p = this.parent.position;
-        this.x = this.getOpt("x", Number, p.x);
-        this.y = this.getOpt("y", Number, p.y);
-        this.width = this.getOpt("width", Number);
-        this.height = this.getOpt("height", Number);
+        if(this.parent !== null)
+        {
+            let p = this.parent.position;
+            this.x = this.getOpt("x", Number, p.x);
+            this.y = this.getOpt("y", Number, p.y);
+            this.width = this.getOpt("width", Number);
+            this.height = this.getOpt("height", Number);
+        }
+        else
+        {
+            let p = this.getOpt("position");
+            this.x = p.x;
+            this.y = p.y;
+            this.width = this.getOpt("width", Number);
+            this.height = this.getOpt("height", Number);
+        }
 
         this.update();
     }
@@ -24,12 +35,15 @@ class Rectangle extends Base
     {
         let p = this.parent.position;
 
-        this.x = p.x;
-        this.y = p.y;
-        this.x1 = Math.round(this.x);
-        this.y1 = Math.round(this.y);
-        this.x2 = Math.round(this.x + this.width);
-        this.y2 = Math.round(this.y + this.height)
+        if(p !== undefined)
+        {
+            this.x = p.x;
+            this.y = p.y;
+            this.x1 = Math.round(this.x);
+            this.y1 = Math.round(this.y);
+            this.x2 = Math.round(this.x + this.width);
+            this.y2 = Math.round(this.y + this.height);
+        }
     }
 
     /**

@@ -1,9 +1,11 @@
+/**
+ * Base gun component for the modular gun system.
+ */
 class Gun extends Component
 {
-    
     /**
      * Gun constructor.
-     * @param {Object} bullet 
+     * @param {Object} barrel (Barrel), trigger (Trigger), shotSound (String, optional).
      */
     constructor(opts)
     {
@@ -12,11 +14,13 @@ class Gun extends Component
 
     create()
     {
-        this.direction = this.getOpt("direction", Vector2);
-        this.fire = this.getOpt("fire", Boolean);
-        this.bullet = this.getOpt("bullet");
-        this.next = this.getOpt("next", Number);
-        this.cooldown = this.getOpt("cooldown", Number, 150);
         super.create();
+        this.barrel = this.getOpt("barrel");                                // Gun's barrel.
+        this.trigger = this.getOpt("trigger");                              // Gun's trigger.
+        this.shootSound = this.getOpt("shootSound", String, "enemyShoot")   // Sound to play when firing.
+        this.fire = false;                                                  // If gun should fire.
+        
+        // Assign trigger's parent to component parent.
+        this.trigger.parent = this.parent; 
     }
 }

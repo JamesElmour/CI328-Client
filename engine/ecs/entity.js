@@ -8,8 +8,6 @@ class Entity extends Base
         {
             opts["name"] = Math.random().toString(36).substr(2, 5);
         }
-
-        this.create();
     }
 
     create()
@@ -20,7 +18,7 @@ class Entity extends Base
         this.tag = this.getOpt("tag", String);
         this.destroy = this.getOpt("destroy", Boolean);
 
-        super.logCreation();
+        super.create();
     }
 
     /**
@@ -31,7 +29,7 @@ class Entity extends Base
     {
         this.components[comp.constructor.name] = comp;
 
-        console.log(`Added [${comp.constructor.name}] to [${this.getOpt("name")}] with value [${comp.toString()}]`);
+        this.log(`Added [${comp.constructor.name}] to [${this.getOpt("name")}] with value [${comp.toString()}]`);
     }
 
     /**
@@ -45,7 +43,7 @@ class Entity extends Base
 
     createComponent(compClass, opts)
     {
-        console.log(`Entity [${this.name}] is creating ${compClass.name} with values [${opts.toString()}].`);
+        this.log(`Entity [${this.name}] is creating ${compClass.name} with values [${opts.toString()}].`);
         opts.parent = this;
         let c = new compClass(opts);
         

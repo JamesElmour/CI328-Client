@@ -1,22 +1,55 @@
+/**
+ * Bullet system for processing all level bullets.
+ */
 class BulletSystem extends System
 {
-    constructor(opts)
+    /**
+     * Process the given bullet.
+     * @param {Bullet} bullet 
+     */
+    process(bullet)
     {
-        super(opts);
+        // If the bullet hasn't hit something.
+        if(!this.detectHit(bullet))
+        {
+            // Move the bullet.
+            this.move(bullet);
+        }
     }
 
-    process(comp)
+    /**
+     * Move the given bullet as per its parameters.
+     * @param {Bullet} bullet 
+     */
+    move(bullet)
     {
-        let p = comp.parent.position;
+        // Get bullet's position.
+        let position = bullet.parent.position;
 
-        p.x += comp.direction.x * comp.speed * this.dt;
-        p.y += comp.direction.y * comp.speed * this.dt;
+        // Move by its speed per second and its direction.
+        position.x += bullet.direction.x * bullet.speed * this.dt;
+        position.y += bullet.direction.y * bullet.speed * this.dt;
 
-        let c = comp.parent.getComponent(Collider);
+        bullet.parent.position = position;
+    }
 
-        if(c.colliding)
+    /**
+     * Detect if the bullet has hit something.
+     * @param {Bullet} bullet 
+     */
+    detectHit(bullet)
+    {
+        // Get collider from parent.
+        let collider = bullet.parent.getComponent(Collider);
+
+        // If it's colliding, destroy this object and return tue.
+        if(collider.colliding)
         {
-            comp.parent.destroy = true;
+            collider.parent.destroy = true;
+            return true;
         }
+
+        // Otherwise return false.
+        return false;
     }
 }

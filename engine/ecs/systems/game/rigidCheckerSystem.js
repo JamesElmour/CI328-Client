@@ -1,17 +1,20 @@
+/**
+ * System responsible for checking rigidbodies.
+ */
 class RigidChecker extends System
 {
-    constructor(opts)
-    {
-        super(opts);
-    }
-
     create()
     {
         super.create();
 
+        // Get the rigidbody mover.
         this.mover = this.getOpt("mover");
     }
 
+    /**
+     * When cycling, set components to mover's components.
+     * @param {Number} dt Deltatime 
+     */
     cycle(dt)
     {
         this.components = this.mover.components;
@@ -19,62 +22,82 @@ class RigidChecker extends System
         super.cycle(dt);
     }
 
-    process(comp)
+    /**
+     * Process the given rigidbody.
+     * @param {Rigidbody} rigidbody 
+     */
+    process(rigidbody)
     {
-        let c = comp.collider.collidedWith;
+        let collidedWith = rigidbody.collider.collidedWith;
 
-        if(c.length !== 0)
+        if(collidedWith.length !== 0)
         {
-            let op = new Vector2(0, 0); // Other position
-            let os = new Vector2(0, 0); // Other size
-            let x;
-            
-            for(x = 0; x < c.length; x++)
-            {
-                let o = c[x];
-                let cp = o.parent.position;
-                op.x += cp.x;
-                op.y += cp.y;
+            // Store positions of collision and size.
+            let otherPosition = new Vector2(0, 0);
+            let otherSize = new Vector2(0, 0);
 
-                let cs = new Vector2(o.rect.width, o.rect.height);
-                os.x += cs.x;
-                os.y += cs.y;
+            // Cycle through all colliding colliders.
+            let counter;
+            for(counter = 0; counter < collidedWith.length; counter++)
+            {
+                // Get other and its position.
+                let other = collidedWith[counter];
+                let position = other.parent.position;
+
+                // Add collider position to other position.
+                otherPosition.x += position.x;
+                otherPosition.y += position.y;
+
+                // Add the collider's size.
+                otherSize.x += other.rect.width;
+                otherSize.y += other.rect.height;
             }
 
-            os.x = os.x / x;
-            os.y = os.y / x;
-            op.x = (op.x / x) + (os.x / 2);
-            op.y = (op.y / x) + (os.y / 2);
+            // Generalize collider size.
+            otherSize.x = otherSize.x / counter;
+            otherSize.y = otherSize.y / counter;
 
-            let v = comp.velocity;
-            let p = comp.previous;
-            p.x += comp.collider.rect.width / 2;
-            p.y += comp.collider.rect.height / 2;
+            // Generalize collider's position for calculation.
+            otherPosition.x = (otherPosition.x / counter) + (otherSize.x / 2);
+            otherPosition.y = (otherPosition.y / counter) + (otherSize.y / 2);
 
-            let cv = new Vector2(p.x - op.x, p.y - op.y); // Collision vector
-            let cm = Math.abs(cv.x) + Math.abs(cv.y); // Collision magnitude
-            cv.x = (cv.x / cm);
-            cv.y = (cv.y / cm);
-            cv = cv.round();
+            // Get rigidbody's velocity and previous frame position.
+            let velocity = rigidbody.velocity;
+            let position = rigidbody.previous;
+            
+            // Offset position.
+            position.x += rigidbody.collider.rect.width / 2;
+            position.y += rigidbody.collider.rect.height / 2;
 
-            v.x = (cv.x == 0) ? v.x : this.solve(cv.x, v.x);
-            v.y = (cv.y == 0) ? v.y : this.solve(cv.y, v.y);
+            // Get collision vector and normalize.
+            let collisionVector = new Vector2(position.x - otherPosition.x, position.y - otherPosition.y);
+            collisionVector = collisionVector.normalize();
 
-            comp.velocity = v;
+            // Restrict rigidbody velocity depending on collision vector's position.
+            velocity.x = (Math.abs(collisionVector.x) < 0.33) ? velocity.x : this.solve(collisionVector.x, velocity.x);
+            velocity.y = (Math.abs(collisionVector.y) < 0.33) ? velocity.y : this.solve(collisionVector.y, velocity.y);
+
+            // Set rigidbody velocity.
+            rigidbody.velocity = velocity;
         }
     }
 
-    solve(d, x)
+    /**
+     * Sets the given velocity depending on given collision dimension.
+     * @param {Number} collisionDimension 
+     * @param {Number} velocityDimension 
+     */
+    solve(collisionDimension, velocityDimension)
     {
-        if(d < 0)
+        if(collisionDimension < 0)
         {
-            x = Math.min(x, 0);
+            velocityDimension = Math.min(velocityDimension, 0);
         }
         else
         {
-            x = Math.max(x, 0);
+            velocityDimension = Math.max(velocityDimension, 0);
         }
 
-        return x;
+        return velocityDimension;
     }
 }

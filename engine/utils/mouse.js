@@ -76,12 +76,12 @@ class Mouse extends Base
         this.right = false;*/
     }
 
-    directionTo(v)
+    directionTo(other)
     {
         let p = this.position.clone();
         p.x += window.scene.camera.position.x;
         p.y += window.scene.camera.position.y;
-        let v2 = v;
+        let v2 = other;
         let d = new Vector2(p.x - v2.x, p.y - v2.y);
         d.x -= (1280 / 2);
         d.y -= (720 / 2);

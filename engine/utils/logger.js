@@ -7,6 +7,6 @@ class Logger
 
     write = (data) =>
     {
-        console.log(data);
+        //console.log(data);
     };
 }

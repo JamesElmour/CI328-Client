@@ -1,19 +1,32 @@
+/**
+ * Base class that forms foundation for most PIGMjs ECS classes.
+ */
 class Base
 {
+    /**
+     * Constructor that'll prepare opts for loading.
+     * @param {Object} opts 
+     */
     constructor(opts)
     {
+        // If no opts are passed, set to empty object.
         if(opts === undefined)
         {
             opts = {};
         }
 
+        // Set opts.
         this.opts = opts;
 
         this.create();
     }
 
+    /**
+     * Create method to be overridden subclasses, will load required data from opts.
+     */
     create()
     {
+        // Log the class's creation.
         this.logCreation();
     }
 
@@ -22,7 +35,7 @@ class Base
      */
     logCreation()
     {
-        console.log(`=== ${this.constructor.name} Created ===\n${this.toString()}`);
+        this.log(`=== ${this.constructor.name} Created ===\n${this.toString()}`);
     }
 
     /**
@@ -39,6 +52,7 @@ class Base
         // If opt doesn't exist, create it.
         if(opt === undefined && type !== undefined)
         {
+            // Check its type, and create blank version of it if no value is specified.
             switch (type)
             {
                 case Vector2:
@@ -72,7 +86,7 @@ class Base
                     opt = new Function();
                     break;
                 default:
-                    console.log(`ERROR: ${name} of type ${type} not created.`);
+                    this.log(`ERROR: ${name} of type ${type} not created.`);
                     opt = null;
                     break;
             }
@@ -88,25 +102,44 @@ class Base
         return opt;
     }
 
+    /**
+     * Logs data to the console.
+     * @param {String} data 
+     */
     log(data)
     {
-        console.log(data);
+        // Disable logging due to performance.
+        if(false)
+        {
+            console.log(data);
+        }
     }
 
+    /**
+     * Convert this class to a string.
+     */
     toString()
     {
+        // Start string with bracket and newline.
         let str = "{\n";
 
+        // For each piece of data in opts, log them to the console.
         for (const [key, value] of Object.entries(this.opts))
         {
-            str += (`'${key}': ${value.toString()}\n`);
+            if(value !== undefined)
+                str += (`'${key}': ${value.toString()}\n`);
         }
 
+        // Close brackets.
         str += "}";
 
+        // Return the string.
         return str;
     }
 
+    /**
+     * Method that returns a clone of the base entity.
+     */
     clone()
     {
         return Object.assign(Object.create(Object.getPrototypeOf(this)), this);

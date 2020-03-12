@@ -1,26 +1,28 @@
+/**
+ * System to move rigidbodies.
+ */
 class RigidMover extends System
 {
-    constructor(opts)
+    /**
+     * Processs the given rigidbody.
+     * @param {Rigidbody} rigid 
+     */
+    process(rigid)
     {
-        super(opts);
-    }
+        // Get rigidbody's position, velocity and drag.
+        let position = rigid.parent.position;
+        let velocity = rigid.velocity;
+        let drag = rigid.drag;
 
-    process(comp)
-    {
-        let a = comp.parent;
-        let p = a.position;
-        let v = comp.velocity;
-        let d = comp.drag;
+        // Store current position as previous position.
+        rigid.previous = position.clone();
 
-        comp.previous = new Vector2(p.x, p.y);
+        // Recalculate rigidbody velocity after drag.
+        velocity.x = velocity.x * (1 - (drag.x * this.dt));
+        velocity.y = velocity.y * (1 - (drag.y * this.dt));
 
-        v.x = v.x * (1 - (d.x * this.dt));
-        v.y = v.y * (1 - (d.y * this.dt));
-
-        p.x += v.x * this.dt;
-        p.y += v.y * this.dt;
-
-        a.position = p;
-        comp.velocity = v;
+        // Update position by velocity.
+        position.x += velocity.x * this.dt;
+        position.y += velocity.y * this.dt;
     }
 }
