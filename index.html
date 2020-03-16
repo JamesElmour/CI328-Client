@@ -68,13 +68,22 @@
         <script src="engine/scenes/mainMenu.js"></script>
         <script src="engine/scenes/gameOver.js"></script>
         <script src="engine/pigm.js"></script>
+        <script src="game/NetworkedPIGM.js"></script>
+        <script src="game/network/NetworkMessage.js"></script>
+        <script src="game/network/NetworkTransceiver.js"></script>
+        <script src="game/network/NetworkManager.js"></script>
+        <script src="game/network/NetworkReciever.js"></script>
+        <script src="game/network/NetworkSender.js"></script>
+        <script src="game/components/NetworkedPlayer.js"></script>
+        <script src="game/systems/NetworkedPlayerSystem.js"></script>
+        <script src="game/scenes/TestScene.js"></script>
         <script>
             let gameStarted = false;
 
             function startGame()
             {
                 if(!gameStarted)
-                    new Pigm(document.querySelector("#pigm-canvas"), document.querySelector("#pigm-buffer-canvas"));
+                    new NetworkedPIGM("ws://127.0.0.1:80", document.querySelector("#pigm-canvas"), document.querySelector("#pigm-buffer-canvas"));
 
                 gameStarted = true;
             }
