@@ -8,7 +8,8 @@ class NetworkSender extends NetworkTransceiver
     playerMove(position)
     {
         let message = new NetworkMessage();
-        message.opcode = message.OpCodes.PlayerMove;
+        message.supercode = 1;
+        message.subcode = 1;
         message.data   = this.NumberToBytes(position);
 
         return message;

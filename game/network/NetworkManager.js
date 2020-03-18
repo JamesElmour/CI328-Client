@@ -52,7 +52,7 @@ class NetworkManager extends Base
             data         = [];
         let index        = 0;
         let messages     = [];
-        while(decided.length !== 0)
+        while(decoded.length !== 0)
         {
             let current = decoded.shift();
 
@@ -100,7 +100,14 @@ class NetworkManager extends Base
 
     sendMessage(message)
     {
-        
-        socket.send(new Uint8Array([3,1,x,y]))
+        let supercode   = message.supercode;
+        let subcode     = message.subcode;
+        let stringData  = message.data;
+
+        let sendingData = [stringData.length + 3, 1, supercode, subcode];
+            stringData.forEach((data) => {sendingData.push(parseInt(data, 2))});
+            sendingData = new Uint8Array(sendingData);
+
+        this.WebSocket.send(sendingData);
     }
 }
