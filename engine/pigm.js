@@ -11,7 +11,7 @@ class Pigm
     constructor(canvas, bufferCanvas)
     {
         // Assign canvas and buffer canvas.
-        this.canvas = canvas;
+        /*this.canvas = canvas;
         this.bufferCanvas = bufferCanvas;
 
         // Create imagle loader and set base URL for assets.
@@ -21,7 +21,7 @@ class Pigm
         window["pigm"] = this;
 
         // Create and load the first scene.
-        this.loaded(il);
+        this.loaded(il);*/
     }
 
     /**
