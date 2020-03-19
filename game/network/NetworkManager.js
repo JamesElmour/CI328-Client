@@ -48,10 +48,11 @@ class NetworkManager extends Base
         }
 
         let opCode       = 0;
-        let dataLength   = 0
-            data         = [];
+        let dataLength   = 0;
         let index        = 0;
         let messages     = [];
+            data         = [];
+        
         while(decoded.length !== 0)
         {
             let current = decoded.shift();

@@ -7,10 +7,10 @@ class NetworkSender extends NetworkTransceiver
 
     playerMove(position)
     {
-        let message = new NetworkMessage();
+        let message       = new NetworkMessage();
         message.supercode = 1;
-        message.subcode = 1;
-        message.data   = this.NumberToBytes(position);
+        message.subcode   = 1;
+        message.data      = this.NumberToBytes(position);
 
         return message;
     }
