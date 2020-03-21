@@ -45,6 +45,8 @@ class NetworkedPlayerSystem extends PlayerSystem
 
         if(!Number.isNaN(newPos))
             position.x += newPos;
+
+        position.x = Math.max(Math.min(position.x, 1280), 0);
     }
 
     sendMessage(direction)
