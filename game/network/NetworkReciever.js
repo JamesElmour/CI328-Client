@@ -8,7 +8,8 @@ class NetworkReciever extends NetworkTransceiver
     playerMove(data)
     {
         let position = data[0];
-        
-        console.log("New player position: " + position);
+
+        if(window.pigm.scene !== undefined)
+            window.pigm.scene.systems[0].components[0].parent.position.x = position;
     }
 }
