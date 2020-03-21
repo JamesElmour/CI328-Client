@@ -9,28 +9,33 @@ class NetworkedPlayerSystem extends PlayerSystem
 
     process(player)
     {
-        let newDirection = this.checkInput(player);
+        let altered = this.checkInput(player);
         this.move(player);
-        this.sendMessage(newDirection);
+
+        if(altered)
+            this.sendMessage(player.direction.x);
     }
 
     checkInput(player)
     {
         let direction = player.direction;
+        let altered = false;
 
         // Player moving left
         if(this.keyboard.key(65))
         {
             direction.x = (direction.x == 1) ? 0 : -1;
+            altered = true;
         }
 
         // Player moving right.
         if(this.keyboard.key(68))
         {
             direction.x = (direction.x == -1) ? 0 : 1;
+            altered = true;
         }
 
-        return direction.x;
+        return altered;
     }
 
     move(player)

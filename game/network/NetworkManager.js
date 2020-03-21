@@ -34,54 +34,32 @@ class NetworkManager extends Base
             console.log(e);
         }
 
-        this.WebSocket.onmessage = this.recieveData;
+        this.WebSocket.onmessage = (data) => 
+        {
+            data.data.arrayBuffer().then(buffer => this.recieveData(buffer));
+        };
     }
 
     recieveData(data)
     {
-        let length  = data.data.length;
-        let decoded = [];
-        
-        for(let i = 0; i < length; i++)
-        {
-            decoded[i] = data.data.charCodeAt(i);
-        }
-
-        let opCode       = 0;
-        let dataLength   = 0;
-        let index        = 0;
+            data         = new Uint8Array(data);
+        let length       = data.length;
+        let superOp      = data[0];
+        let subOp        = data[1];
         let messages     = [];
-            data         = [];
+        let messageData  = [];
+        let index        = 2;
         
-        while(decoded.length !== 0)
+        while(index < data.length)
         {
-            let current = decoded.shift();
+            let current = data[index];
+            messageData.push(current);
 
-            if(index == 0)
-            {
-                opCode = current;
-            }
-            else if (index == 1)
-            {
-                dataLength = current;
-            }
-            else
-            {
-                data.push(current);
-                dataLength--;
-            }
-
-            if(dataLength == 0)
-            {
-                let message = new NetworkMessage(opCode, data);
-                messages.push(message);
-                index = 0;
-            }
-            else
-            {
-                index++;
-            }
+            index++;
         }
+
+        let message = new NetworkMessage(superOp, subOp, messageData);
+        messages.push(message);
 
         this.processMessages(messages)
     }
@@ -90,10 +68,10 @@ class NetworkManager extends Base
     {
         messages.forEach(message =>
         {
-            switch(message.opCode)
+            switch(message.superOp)
             {
-                case message.OpCodes.PlayerMove:
-                    this.Reciever.playerMove(data);
+                case 0:
+                    this.Reciever.playerMove(message.data);
                     break;
             }
         });

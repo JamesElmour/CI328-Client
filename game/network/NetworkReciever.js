@@ -7,7 +7,8 @@ class NetworkReciever extends NetworkTransceiver
 
     playerMove(data)
     {
-        let position = data[0] + data[1];
+        let position = data[0];
         
+        console.log("New player position: " + position);
     }
 }
