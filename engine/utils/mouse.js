@@ -13,7 +13,7 @@ class Mouse extends Base
         this.left = this.getOpt("left", Boolean);
         super.create();
 
-        this.canvas.addEventListener("mousemove", function (e)
+        /*this.canvas.addEventListener("mousemove", function (e)
         {
             let set = (e) =>
             {
@@ -27,7 +27,7 @@ class Mouse extends Base
             };
 
             set(e);
-        }, false);
+        }, false);*/
 
         this.canvas.addEventListener("mousedown", function (e)
         {
