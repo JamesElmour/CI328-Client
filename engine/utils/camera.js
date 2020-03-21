@@ -9,7 +9,7 @@ class Camera extends Base
     create()
     {
         this.position = this.getOpt("position", Vector2);           // Get camera's position.
-        this.position = new Vector2(640, 360);
+        this.position = new Vector2(940, 480);
         this.following = this.getOpt("following", Entity);          // Which entity the camera should follow.
         this.mouse = this.getOpt("mouse");                          // Scene's mouse entity.
         this.shake = this.getOpt("shake", Number, 0);               // Current amount of screen shake.
