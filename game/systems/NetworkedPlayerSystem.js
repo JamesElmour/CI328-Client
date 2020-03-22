@@ -9,42 +9,18 @@ class NetworkedPlayerSystem extends PlayerSystem
 
     process(player)
     {
-        let altered = this.checkInput(player);
+        //let altered = this.checkInput(player);
         this.move(player);
-
-        if(altered)
-            this.sendMessage(player.direction.x);
-    }
-
-    checkInput(player)
-    {
-        let direction = player.direction;
-        let altered = false;
-
-        // Player moving left
-        if(this.keyboard.key(65))
-        {
-            direction.x = (direction.x == 1) ? 0 : -1;
-            altered = true;
-        }
-
-        // Player moving right.
-        if(this.keyboard.key(68))
-        {
-            direction.x = (direction.x == -1) ? 0 : 1;
-            altered = true;
-        }
-
-        return altered;
+        this.sendMessage(player.parent.position.x);
     }
 
     move(player)
     {
         let position = player.parent.position;
-        let newPos   = player.direction.x * (this.speed * this.dt);
+        let newPos   = this.mouse.position.x;
 
         if(!Number.isNaN(newPos))
-            position.x += newPos;
+            position.x = newPos;
 
         position.x = Math.max(Math.min(position.x, 1280), 0);
     }
@@ -52,8 +28,8 @@ class NetworkedPlayerSystem extends PlayerSystem
     sendMessage(direction)
     {
         // No negative directions.
-        direction = direction + 1;
-        let message = window.pigm.NetworkManager.Sender.playerMove(direction);
-        window.pigm.NetworkManager.sendMessage(message);
+        //direction = direction + 1;
+        //let message = window.pigm.NetworkManager.Sender.playerMove(direction);
+        //window.pigm.NetworkManager.sendMessage(message);
     }
 }

@@ -4,8 +4,8 @@ class NetworkedPIGM extends Pigm
     {
         super(canvas, bufferCanvas);
         
-        this.Socket = new WebSocket(serverIP);
-        this.NetworkManager = new NetworkManager({socket: this.Socket});
+        //this.Socket = new WebSocket(serverIP);
+        //this.NetworkManager = new NetworkManager({socket: this.Socket});
         
         // Assign canvas and buffer canvas.
         this.canvas = canvas;
@@ -18,8 +18,10 @@ class NetworkedPIGM extends Pigm
         window["pigm"] = this;
 
         // Check to detect if map is loaded, once loaded create the level.
-        let checkConnected = () => window.setTimeout(() => (this.Socket.readyState == this.Socket.OPEN) ? this.loaded(il) : checkConnected(), 32);
-        checkConnected();
+        //let checkConnected = () => window.setTimeout(() => (this.Socket.readyState == this.Socket.OPEN) ? this.loaded(il) : checkConnected(), 32);
+        //checkConnected();
+
+        this.loaded(il);
     }
 
     loaded(il)
