@@ -59,6 +59,9 @@ class ColliderSystem extends System
             // Store collided with element and parent tag in current collider.
             collider.collidedWith.push(element);
             collider.collidedTags.push(element.parent.tag);
+
+            element.collidedWith.push(collider);
+            element.collidedTags.push(collider.parent.tag);
             
             // If element isn't static, set static collision attribute.
             if(!element.static)
