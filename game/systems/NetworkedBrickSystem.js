@@ -6,10 +6,30 @@ class NetworkedBrickSystem extends System
 
         this.HitSprite = this.getOpt("hitSprite");
         this.CriticalSprite = this.getOpt("criticalSprite");
+        this.WonDeclared = false;
+        this.Started = false;
+    }
+
+    precheck()
+    {
+        super.precheck();
+
+        if(this.Started && this.components.length === 0 && !this.WonDeclared)
+        {
+            let parent = new Entity({position: new Vector2(500, 550)});
+            let font = parent.createComponent(Font, {text: "You Win!"});
+
+            window["pigm"].scene.FontRenderer.addComponent(font);
+            this.WonDeclared = true;
+
+            window["pigm"].scene.BallSystem.DestroyAllBalls = true;
+        }
     }
 
     process(brick)
     {
+        this.Started = true;
+
         if(this.checkCollision(brick))
         {
             this.hit(brick);

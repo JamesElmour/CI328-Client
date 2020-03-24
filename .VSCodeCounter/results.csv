@@ -1,0 +1,11 @@
+filename, language, JavaScript, comment, blank, total
+c:\xampp\htdocs\Client\CI328-Client\game\NetworkedPIGM.js, JavaScript, 20, 5, 6, 31
+c:\xampp\htdocs\Client\CI328-Client\game\components\NetworkedPlayer.js, JavaScript, 8, 0, 1, 9
+c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkManager.js, JavaScript, 97, 0, 16, 113
+c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkMessage.js, JavaScript, 9, 1, 2, 12
+c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkReciever.js, JavaScript, 11, 0, 2, 13
+c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkSender.js, JavaScript, 15, 0, 2, 17
+c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkTransceiver.js, JavaScript, 14, 0, 2, 16
+c:\xampp\htdocs\Client\CI328-Client\game\scenes\TestScene.js, JavaScript, 24, 0, 6, 30
+c:\xampp\htdocs\Client\CI328-Client\game\systems\NetworkedPlayerSystem.js, JavaScript, 40, 3, 9, 52
+Total, -, 238, 9, 46, 293

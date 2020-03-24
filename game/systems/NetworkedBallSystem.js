@@ -5,6 +5,22 @@ class NetworkedBallSystem extends System
         super(opts);
 
         this.ComboCount = 0;
+        this.DestroyAllBalls = false;
+    }
+
+    precheck()
+    {
+        super.precheck();
+
+        if(this.DestroyAllBalls)
+        {
+            this.components.forEach((e) =>
+            {
+                e.parent.destroy = true;
+            });
+
+            this.DestroyAllBalls = false;
+        }
     }
 
     process(ball)

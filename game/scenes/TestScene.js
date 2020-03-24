@@ -54,7 +54,7 @@ class TestScene extends Scene
             entity.tag = "Player";
         let player     = entity.createComponent(NetworkedPlayer, {});
         let sprite     = entity.createComponent(Sprite, {image: this.il.getImage("entities/player/Debug.png")});
-        let rectangle  = entity.createComponent(Rectangle, {x: entity.position.x, y: entity.position.y, width: 256, height: 64});
+        let rectangle  = entity.createComponent(Rectangle, {x: entity.position.x, y: entity.position.y, width: 256, height: 4});
         let collider   = entity.createComponent(Collider, {rect: rectangle, static: false});
 
         this.PlayerSystem.addComponent(player);
@@ -68,10 +68,10 @@ class TestScene extends Scene
         {
             for(let y = 0; y < 6; y++)
             {
-                let position = new Vector2((x * 64) + 60, (y * 16) + 410);
+                let position = new Vector2((x * 64) + 60, (y * 16) + 420);
                 let entity = new Entity({name: "Brick_" + x + "_" + y, position: position});
                     entity.tag = "Brick";
-                let sprite = entity.createComponent(Sprite, {image: this.il.getImage("entities/Brick.png")});
+                let sprite    = entity.createComponent(Sprite, {image: this.il.getImage("entities/Brick.png")});
                 let rectangle = entity.createComponent(Rectangle, {x: entity.position.x, y: entity.position.y, width: 64, height: 16});
                 let collider  = entity.createComponent(Collider, {rect: rectangle, static: false});
                 let brick     = entity.createComponent(NetworkedBrick, {});
