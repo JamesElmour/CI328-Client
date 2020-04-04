@@ -28,7 +28,7 @@ class NetworkedBallSystem extends System
         this.playerBounce(ball);
         this.wallBounce(ball);
         this.brickBounce(ball);
-        this.move(ball);
+        //this.move(ball);
     }
 
     move(ball)

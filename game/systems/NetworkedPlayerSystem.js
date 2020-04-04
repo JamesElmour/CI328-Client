@@ -25,11 +25,10 @@ class NetworkedPlayerSystem extends PlayerSystem
         position.x = Math.max(Math.min(position.x, 1280), 0);
     }
 
-    sendMessage(direction)
+    sendMessage(position)
     {
         // No negative directions.
-        //direction = direction + 1;
-        //let message = window.pigm.NetworkManager.Sender.playerMove(direction);
-        //window.pigm.NetworkManager.sendMessage(message);
+        let message = window.pigm.NetworkManager.Sender.playerMove(position);
+        window.pigm.NetworkManager.sendMessage(message);
     }
 }

@@ -73,8 +73,27 @@ class NetworkManager extends Base
                 case 0:
                     this.Reciever.playerMove(message.data);
                     break;
+                case 1:
+                    this.Reciever.ballBounce(message.data);
+                    break;
+                case 2:
+                    this.brickMessages(message);
+                    break;
             }
         });
+    }
+
+    brickMessages(message)
+    {
+        switch(message.subOp)
+        {
+            case 0:
+                this.Reciever.brickHit(message.data);
+                break;
+            case 1:
+                this.Reciever.brickDestroyed(message.data);
+                break;
+        }
     }
 
     sendMessage(message)

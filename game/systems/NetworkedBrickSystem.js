@@ -30,10 +30,10 @@ class NetworkedBrickSystem extends System
     {
         this.Started = true;
 
-        if(this.checkCollision(brick))
-        {
-            this.hit(brick);
-        }
+        //if(this.checkCollision(brick))
+        //{
+            //this.hit(brick);
+        //}
     }
 
     checkCollision(brick)
