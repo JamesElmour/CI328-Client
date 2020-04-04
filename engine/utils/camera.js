@@ -26,7 +26,7 @@ class Camera extends Base
         //this.position = this.following.position;
 
         // Shake the camera.
-        this.shakeCamera();
+       //this.shakeCamera();
     }
 
     /**
