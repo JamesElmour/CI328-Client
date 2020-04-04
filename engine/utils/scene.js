@@ -21,7 +21,8 @@ class Scene extends Base
         this.lastStep = this.getOpt("lastTime", Number);                                // Time of last frame's called.
         this.stop = false;                                                              // Should stop scene's execution.
         this.dt = 1;                                                                    // Previous deltatime.
-
+        this.previousTime = 0;
+        this.currentTime = 0;
         // Add this scene to window's prototype.
         window.scene = this;
 
@@ -50,10 +51,13 @@ class Scene extends Base
             window.scene.canvasContext.drawImage(window.scene.bufferCanvas, 0, 0);
             
             // Calculate current deltatime.
-            let dt = -(step - window.scene.lastStep) / 1000.0;
+            let dt = 0.0074;
             window.scene.dt = dt;
             window.scene.lastStep = step;
+            window.scene.previousTime = window.scene.currentTime;
+            window.scene.currentTime = step;
 
+            //console.log((window.scene.currentTime - window.scene.previousTime) / 1000);
             // Prepare next frame.
             window.scene.cycleSystems(dt);
         }
