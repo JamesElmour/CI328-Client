@@ -93,6 +93,17 @@ class System extends Base
         
     }
 
+    get(name)
+    {
+        for(let i = 0; i < this.components.length; i++)
+        {
+            let c = this.components[i];
+
+            if(c.parent.name === name)
+                return c;
+        }
+    }
+
     /**
      * Method to sort system.
      */
@@ -125,5 +136,13 @@ class System extends Base
     process(comp)
     {
 
+    }
+
+    clear()
+    {
+        for(let i = 0; i < this.components.length; i++)
+        {
+            this.components[i].parent.destroy = true;
+        }
     }
 }
