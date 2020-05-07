@@ -33,6 +33,22 @@ class FontRenderer extends System
             window.scene.il.loadImage("font/font_" + (index + 2) + ".png");
         });
     }
+    
+    /**
+     * Create text at position with given string.
+     * @param {Vector2} position 
+     * @param {String} text 
+     */
+    addText(position, text)
+    {
+        let parent = new Entity({position: position});
+        let font = parent.createComponent(Font, {text: text})
+
+        this.addComponent(font);
+
+        return font;
+    }
+
 
     /**
      * Process the given font element.
