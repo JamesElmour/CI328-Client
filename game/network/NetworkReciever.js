@@ -5,7 +5,7 @@ class NetworkReciever extends NetworkTransceiver
         super(manager);
     }
 
-    playerMove(data)
+    playerMove(isPlayer, data)
     {
         let position = data[0];
         
@@ -15,36 +15,93 @@ class NetworkReciever extends NetworkTransceiver
         }
 
         if(window.pigm.scene !== undefined)
-            if(window.pigm.scene.systems[0].components.length !== 0)
-                window.pigm.scene.systems[0].components[0].parent.position.x = position;
+            if(window.pigm.scene.systems[1].components.length !== 0)
+            {   
+                if(isPlayer)
+                    window.pigm.scene.systems[1].components[0].parent.position.x = position;
+                else
+                    window.pigm.scene.systems[1].components[1].parent.position.x = position;
+            }
     }
 
-    ballBounce(data)
+    ballBounce(isPlayer, data)
     {
         let xPos    = this.bytesToNumber(data[0], data[1]);
         let yPos    = this.bytesToNumber(data[2], data[3]);
-        let xBounce = this.bytesToNumber(data[4], data[5]);
-        let yBounce = this.bytesToNumber(data[6], data[7]);
+        let id      = data[4];
+        let xBounce = this.bytesToNumber(data[5], data[6]);
+        let yBounce = this.bytesToNumber(data[7], data[8]);
+
+        if(id !== 0)
+        {
+            let a = 2;
+        }
 
         if(window.pigm.scene !== undefined)
             if(window.pigm.scene.systems[0].components.length !== 0)
             {
-                window.pigm.scene.systems[2].components[0].parent.position.x = xPos;
-                window.pigm.scene.systems[2].components[0].parent.position.y = yPos;
-                window.pigm.scene.systems[2].components[0].direction.x = -((xBounce - 100.0) / 100.0)
-                window.pigm.scene.systems[2].components[0].direction.y = (yBounce - 100.0) / 100.0
+                let comp;
+
+                if(isPlayer)
+                {
+                    comp = window.pigm.scene.systems[2].get("Ball_" + id);
+                }
+                else
+                {
+                    yPos -= 300;
+                    comp = window.pigm.scene.systems[2].get("opponent_Ball_" + id);
+                }
+
+                comp.parent.position.x = xPos;
+                comp.parent.position.y = yPos;
+                comp.direction.x = -((xBounce - 100.0) / 100.0)
+                comp.direction.y = -(yBounce - 100.0) / 100.0
             }
     }
 
-    brickHit(data)
+    ballCreate(isPlayer, data)
+    {
+        let xPos    = this.bytesToNumber(data[0], data[1]);
+        let yPos    = this.bytesToNumber(data[2], data[3]);
+        let id      = data[4];
+        let xBounce = this.bytesToNumber(data[5], data[6]);
+        let yBounce = this.bytesToNumber(data[7], data[8]);
+        
+        let entity     = new Entity({name: "Ball_" + id, position: new Vector2(xPos, yPos)});
+            entity.tag = "Ball";
+        let ball       = entity.createComponent(NetworkedBall, {direction: new Vector2((xBounce - 100) / 100, (yBounce - 100) / 100)});
+        let sprite     = entity.createComponent(Sprite, {image: window.pigm.scene.il.getImage("entities/Ball.png")});
+        let rectangle  = entity.createComponent(Rectangle, {x: entity.position.x, y: entity.position.y, width: 16, height: 16});
+        let collider   = entity.createComponent(Collider, {rect: rectangle, static: false});
+
+        window.pigm.scene.BallSystem.addComponent(ball);
+        window.pigm.scene.SpriteRenderer.addComponent(sprite);
+        window.pigm.scene.ColliderSystem.addComponent(collider);
+
+        if(!isPlayer)
+        {
+            entity.name = "opponent_" + entity.name;
+            entity.position.y = 300;
+        }
+
+        setTimeout(() => entity.destroy = true, 10000);
+    }
+
+    brickHit(isPlayer, data)
     {
         let x       = this.bytesToNumber(data[0], data[1]);
         let y       = this.bytesToNumber(data[2], data[3]);
         let health  = this.bytesToNumber(data[4], data[5]);
+        let name = ("Brick_" + x + "_" + y);
+
+        if(!isPlayer)
+        {
+            name = "opponent_" + name;
+        }
 
         window.pigm.scene.systems[3].components.forEach(brick =>
         {
-            if(brick.parent.name === ("Brick_" + x + "_" + y))
+            if(brick.parent.name === name)
             {
                 brick.health = health;
 
@@ -60,15 +117,21 @@ class NetworkReciever extends NetworkTransceiver
         });
     }
 
-    brickDestroyed(data)
+    brickDestroyed(isPlayer, data)
     {
         let x       = this.bytesToNumber(data[0], data[1]);
         let y       = this.bytesToNumber(data[2], data[3]);
         let health  = this.bytesToNumber(data[4], data[5]);
+        let name = ("Brick_" + x + "_" + y);
+
+        if(!isPlayer)
+        {
+            name = "Opponent_" + name;
+        }
 
         window.pigm.scene.systems[3].components.forEach(brick =>
         {
-            if(brick.parent.name === ("Brick_" + x + "_" + y))
+            if(brick.parent.name === name)
                 brick.parent.destroy = true;
         });
     }
