@@ -1,11 +1,79 @@
-filename, language, JavaScript, comment, blank, total
-c:\xampp\htdocs\Client\CI328-Client\game\NetworkedPIGM.js, JavaScript, 20, 5, 6, 31
-c:\xampp\htdocs\Client\CI328-Client\game\components\NetworkedPlayer.js, JavaScript, 8, 0, 1, 9
-c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkManager.js, JavaScript, 97, 0, 16, 113
-c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkMessage.js, JavaScript, 9, 1, 2, 12
-c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkReciever.js, JavaScript, 11, 0, 2, 13
-c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkSender.js, JavaScript, 15, 0, 2, 17
-c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkTransceiver.js, JavaScript, 14, 0, 2, 16
-c:\xampp\htdocs\Client\CI328-Client\game\scenes\TestScene.js, JavaScript, 24, 0, 6, 30
-c:\xampp\htdocs\Client\CI328-Client\game\systems\NetworkedPlayerSystem.js, JavaScript, 40, 3, 9, 52
-Total, -, 238, 9, 46, 293
+"filename", "language", "HTML", "JavaScript", "Excel", "JSON", "comment", "blank", "total"
+"c:\xampp2\htdocs\NetworkedPIGMjs\OpCodes.xlsx", "Excel", 0, 0, 76, 0, 0, 0, 76
+"c:\xampp2\htdocs\NetworkedPIGMjs\assets\maps\TestMap.js", "JavaScript", 0, 41, 0, 0, 0, 0, 41
+"c:\xampp2\htdocs\NetworkedPIGMjs\assets\maps\TestMap.json", "JSON", 0, 0, 0, 717, 0, 0, 717
+"c:\xampp2\htdocs\NetworkedPIGMjs\assets\tilesets\Debug.json", "JSON", 0, 0, 0, 300, 0, 0, 300
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\base.js", "JavaScript", 0, 92, 0, 0, 40, 15, 147
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\compCreator.js", "JavaScript", 0, 16, 0, 0, 0, 5, 21
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\component.js", "JavaScript", 0, 12, 0, 0, 8, 2, 22
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\animatorComponent.js", "JavaScript", 0, 18, 0, 0, 10, 3, 31
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\bulletComponent.js", "JavaScript", 0, 16, 0, 0, 10, 2, 28
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\buttonComponent.js", "JavaScript", 0, 10, 0, 0, 6, 0, 16
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\colliderComponent.js", "JavaScript", 0, 31, 0, 0, 16, 6, 53
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\doorComponent.js", "JavaScript", 0, 16, 0, 0, 14, 6, 36
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\enemyComponent.js", "JavaScript", 0, 18, 0, 0, 10, 1, 29
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\gunComponent.js", "JavaScript", 0, 16, 0, 0, 8, 2, 26
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\barrel.js", "JavaScript", 0, 11, 0, 0, 3, 0, 14
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\playerShotgunBarrel.js", "JavaScript", 0, 10, 0, 0, 3, 0, 13
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\playerSpreadBarrel.js", "JavaScript", 0, 10, 0, 0, 3, 0, 13
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\slowEnemyBarrel.js", "JavaScript", 0, 9, 0, 0, 3, 0, 12
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\standardBarrel.js", "JavaScript", 0, 3, 0, 0, 3, 1, 7
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\playerFastTrigger.js", "JavaScript", 0, 9, 0, 0, 3, 1, 13
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\playerSlowTrigger.js", "JavaScript", 0, 9, 0, 0, 3, 1, 13
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\slowEnemyTrigger.js", "JavaScript", 0, 8, 0, 0, 3, 0, 11
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\standardTrigger.js", "JavaScript", 0, 7, 0, 0, 3, 0, 10
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\trigger.js", "JavaScript", 0, 9, 0, 0, 3, 0, 12
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickupComponent.js", "JavaScript", 0, 21, 0, 0, 19, 4, 44
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickups\healthPickup.js", "JavaScript", 0, 10, 0, 0, 10, 2, 22
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickups\speedPickup.js", "JavaScript", 0, 7, 0, 0, 8, 0, 15
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\playerComponent.js", "JavaScript", 0, 24, 0, 0, 12, 2, 38
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\rigidbodyComponent.js", "JavaScript", 0, 15, 0, 0, 10, 2, 27
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\font.js", "JavaScript", 0, 13, 0, 0, 10, 2, 25
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\renderComponent.js", "JavaScript", 0, 13, 0, 0, 10, 2, 25
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\sprite.js", "JavaScript", 0, 14, 0, 0, 7, 1, 22
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\entity.js", "JavaScript", 0, 46, 0, 0, 8, 11, 65
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\animatorSystem.js", "JavaScript", 0, 46, 0, 0, 26, 8, 80
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\bulletSystem.js", "JavaScript", 0, 27, 0, 0, 22, 6, 55
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\buttonSystem.js", "JavaScript", 0, 44, 0, 0, 0, 10, 54
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\colliderSystem.js", "JavaScript", 0, 48, 0, 0, 40, 10, 98
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\doorSystem.js", "JavaScript", 0, 21, 0, 0, 17, 3, 41
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\enemySystem.js", "JavaScript", 0, 82, 0, 0, 53, 23, 158
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\gunSystem.js", "JavaScript", 0, 75, 0, 0, 57, 20, 152
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\pickupSystem.js", "JavaScript", 0, 19, 0, 0, 16, 3, 38
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\playerSystem.js", "JavaScript", 0, 160, 0, 0, 76, 33, 269
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\rigidCheckerSystem.js", "JavaScript", 0, 57, 0, 0, 29, 17, 103
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\rigidMoverSystem.js", "JavaScript", 0, 14, 0, 0, 11, 3, 28
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\fontRenderer.js", "JavaScript", 0, 51, 0, 0, 34, 16, 101
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\spriteRenderer.js", "JavaScript", 0, 41, 0, 0, 31, 11, 83
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\uiRenderer.js", "JavaScript", 0, 9, 0, 0, 10, 2, 21
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\system.js", "JavaScript", 0, 83, 0, 0, 38, 27, 148
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\pigm.js", "JavaScript", 0, 18, 0, 0, 32, 4, 54
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\gameLevel.js", "JavaScript", 0, 204, 0, 0, 74, 41, 319
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\gameOver.js", "JavaScript", 0, 31, 0, 0, 20, 7, 58
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\mainMenu.js", "JavaScript", 0, 66, 0, 0, 30, 17, 113
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\camera.js", "JavaScript", 0, 53, 0, 0, 46, 18, 117
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\imageLoader.js", "JavaScript", 0, 37, 0, 0, 26, 10, 73
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\keyboard.js", "JavaScript", 0, 25, 0, 0, 13, 7, 45
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\logger.js", "JavaScript", 0, 9, 0, 0, 1, 2, 12
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\mapLoader.js", "JavaScript", 0, 129, 0, 0, 84, 39, 252
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\mouse.js", "JavaScript", 0, 76, 0, 0, 2, 15, 93
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\rectangle.js", "JavaScript", 0, 54, 0, 0, 4, 9, 67
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\scene.js", "JavaScript", 0, 71, 0, 0, 47, 20, 138
+"c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\vector2.js", "JavaScript", 0, 38, 0, 0, 18, 7, 63
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\NetworkedPIGM.js", "JavaScript", 0, 33, 0, 0, 6, 10, 49
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedBall.js", "JavaScript", 0, 9, 0, 0, 7, 0, 16
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedBrick.js", "JavaScript", 0, 8, 0, 0, 7, 0, 15
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedPlayer.js", "JavaScript", 0, 9, 0, 0, 7, 0, 16
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedPowerUp.js", "JavaScript", 0, 8, 0, 0, 7, 1, 16
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkManager.js", "JavaScript", 0, 183, 0, 0, 59, 33, 275
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkMessage.js", "JavaScript", 0, 9, 0, 0, 3, 0, 12
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkReciever.js", "JavaScript", 0, 197, 0, 0, 3, 32, 232
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkSender.js", "JavaScript", 0, 18, 0, 0, 10, 4, 32
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkTransceiver.js", "JavaScript", 0, 14, 0, 0, 7, 2, 23
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\scenes\TestScene.js", "JavaScript", 0, 127, 0, 0, 0, 20, 147
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedBallSystem.js", "JavaScript", 0, 105, 0, 0, 39, 23, 167
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedBrickSystem.js", "JavaScript", 0, 44, 0, 0, 3, 8, 55
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedPlayerSystem.js", "JavaScript", 0, 29, 0, 0, 2, 6, 37
+"c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedPowerUpSystem.js", "JavaScript", 0, 23, 0, 0, 0, 4, 27
+"c:\xampp2\htdocs\NetworkedPIGMjs\index.html", "HTML", 94, 0, 0, 0, 0, 4, 98
+"Total", "-", 94, 2938, 76, 1017, 1263, 606, 5994

@@ -1,3 +1,6 @@
+/**
+ * Brick system to process Bricks.
+ */
 class NetworkedBrickSystem extends System
 {
     constructor(opts)
@@ -13,39 +16,44 @@ class NetworkedBrickSystem extends System
     precheck()
     {
         super.precheck();
-
-        if(this.Started && this.components.length === 0 && !this.WonDeclared)
-        {
-            let parent = new Entity({position: new Vector2(500, 550)});
-            let font = parent.createComponent(Font, {text: "You Win!"});
-
-            window["pigm"].scene.FontRenderer.addComponent(font);
-            this.WonDeclared = true;
-
-            window["pigm"].scene.BallSystem.DestroyAllBalls = true;
-        }
     }
 
+    /**
+     * Process the given Brick.
+     * @param {*} brick 
+     */
     process(brick)
     {
         this.Started = true;
 
-        //if(this.checkCollision(brick))
-        //{
-            //this.hit(brick);
-        //}
+        // If Brick has been collided with.
+        if(this.checkCollision(brick))
+        {
+            // Process collision.
+            this.hit(brick);
+        }
     }
 
+    /**
+     * Check if Brick has collided with a Ball.
+     * @param {*} brick 
+     */
     checkCollision(brick)
     {
         let collider = brick.parent.getComponent(Collider);
         return collider.collidedTags.indexOf("Ball") !== -1;
     }
 
+    /**
+     * Process Brick hit by Ball.
+     * @param {*} brick 
+     */
     hit(brick)
     {
+        // Deduct health.
         brick.health--;
 
+        // Update sprite.
         if(brick.health == 2)
         {
             brick.parent.getComponent(Sprite).image = this.HitSprite;
@@ -55,6 +63,7 @@ class NetworkedBrickSystem extends System
             brick.parent.getComponent(Sprite).image = this.CriticalSprite;
         }
 
+        // If Brick health is zero, destroy it.
         if(brick.health <= 0)
         {
             brick.parent.destroy = true;

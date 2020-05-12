@@ -39,12 +39,17 @@ class FontRenderer extends System
      * @param {Vector2} position 
      * @param {String} text 
      */
-    addText(position, text)
+    addText(position, text, timeout = 0)
     {
         let parent = new Entity({position: position});
         let font = parent.createComponent(Font, {text: text})
 
         this.addComponent(font);
+
+        if(timeout !== 0)
+        {
+            setTimeout(function(){ parent.destroy = true; }, timeout);
+        }
 
         return font;
     }

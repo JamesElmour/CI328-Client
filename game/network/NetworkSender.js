@@ -1,3 +1,6 @@
+/**
+ * Send data from the client to server.
+ */
 class NetworkSender extends NetworkTransceiver
 {
     constructor(manager)
@@ -5,12 +8,24 @@ class NetworkSender extends NetworkTransceiver
         super(manager);
     }
 
+    /**
+     * Convert given position into player position Message.
+     * @param {*} position 
+     */
     playerMove(position)
     {
-        let message       = new NetworkMessage();
-        message.supercode = 1;
-        message.subcode   = 1;
+        let message       = new NetworkMessage(1, 1);
         message.data      = this.NumberToBytes(position);
+
+        return message;
+    }
+
+    /**
+     * Create message indicating PowerUp activation.
+     */
+    usePowerUp()
+    {
+        let message = new NetworkMessage(4, 1);
 
         return message;
     }

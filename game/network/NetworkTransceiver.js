@@ -1,3 +1,6 @@
+/**
+ * 'Abstract' class containing functionality for sending and recieving data.
+ */
 class NetworkTransceiver
 {
     constructor(manager)
@@ -5,6 +8,10 @@ class NetworkTransceiver
         this.manager = manager;
     }
 
+    /**
+     * Convert provided number into 2 bytes.
+     * @param {*} number 
+     */
     NumberToBytes(number)
     {
         let bits  = parseInt(number, 10).toString(2);

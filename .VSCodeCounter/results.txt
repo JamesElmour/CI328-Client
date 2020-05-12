@@ -1,37 +1,126 @@
-Date : 2020-03-19 13:09:15
-Directory : c:\xampp\htdocs\Client\CI328-Client\game
-Total : 9 files,  238 codes, 9 comments, 46 blanks, all 293 lines
+Date : 2020-05-12 15:32:12
+Directory : c:\xampp2\htdocs\NetworkedPIGMjs
+Total : 77 files,  4125 codes, 1263 comments, 606 blanks, all 5994 lines
 
 Languages
 +------------+------------+------------+------------+------------+------------+
 | language   | files      | code       | comment    | blank      | total      |
 +------------+------------+------------+------------+------------+------------+
-| JavaScript |          9 |        238 |          9 |         46 |        293 |
+| JavaScript |         73 |      2,938 |      1,263 |        602 |      4,803 |
+| JSON       |          2 |      1,017 |          0 |          0 |      1,017 |
+| HTML       |          1 |         94 |          0 |          4 |         98 |
+| Excel      |          1 |         76 |          0 |          0 |         76 |
 +------------+------------+------------+------------+------------+------------+
 
 Directories
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| path                                                                      | files      | code       | comment    | blank      | total      |
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                         |          9 |        238 |          9 |         46 |        293 |
-| components                                                                |          1 |          8 |          0 |          1 |          9 |
-| network                                                                   |          5 |        146 |          1 |         24 |        171 |
-| scenes                                                                    |          1 |         24 |          0 |          6 |         30 |
-| systems                                                                   |          1 |         40 |          3 |          9 |         52 |
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                            | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                               |         77 |      4,125 |      1,263 |        606 |      5,994 |
+| assets                                                                                          |          3 |      1,058 |          0 |          0 |      1,058 |
+| assets\maps                                                                                     |          2 |        758 |          0 |          0 |        758 |
+| assets\tilesets                                                                                 |          1 |        300 |          0 |          0 |        300 |
+| engine                                                                                          |         57 |      2,081 |      1,103 |        459 |      3,643 |
+| engine\ecs                                                                                      |         44 |      1,270 |        706 |        263 |      2,239 |
+| engine\ecs\components                                                                           |         27 |        355 |        198 |         45 |        598 |
+| engine\ecs\components\game                                                                      |         22 |        287 |        163 |         33 |        483 |
+| engine\ecs\components\game\guns                                                                 |         10 |         85 |         30 |          3 |        118 |
+| engine\ecs\components\game\guns\barrels                                                         |          5 |         43 |         15 |          1 |         59 |
+| engine\ecs\components\game\guns\triggers                                                        |          5 |         42 |         15 |          2 |         59 |
+| engine\ecs\components\game\pickups                                                              |          2 |         17 |         18 |          2 |         37 |
+| engine\ecs\components\render                                                                    |          3 |         40 |         27 |          5 |         72 |
+| engine\ecs\systems                                                                              |         15 |        777 |        460 |        192 |      1,429 |
+| engine\ecs\systems\game                                                                         |         11 |        593 |        347 |        136 |      1,076 |
+| engine\ecs\systems\renderSystems                                                                |          3 |        101 |         75 |         29 |        205 |
+| engine\scenes                                                                                   |          3 |        301 |        124 |         65 |        490 |
+| engine\utils                                                                                    |          9 |        492 |        241 |        127 |        860 |
+| game                                                                                            |         15 |        816 |        160 |        143 |      1,119 |
+| game\components                                                                                 |          4 |         34 |         28 |          1 |         63 |
+| game\network                                                                                    |          5 |        421 |         82 |         71 |        574 |
+| game\scenes                                                                                     |          1 |        127 |          0 |         20 |        147 |
+| game\systems                                                                                    |          4 |        201 |         44 |         41 |        286 |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| filename                                                                  | language   | code       | comment    | blank      | total      |
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| c:\xampp\htdocs\Client\CI328-Client\game\NetworkedPIGM.js                 | JavaScript |         20 |          5 |          6 |         31 |
-| c:\xampp\htdocs\Client\CI328-Client\game\components\NetworkedPlayer.js    | JavaScript |          8 |          0 |          1 |          9 |
-| c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkManager.js        | JavaScript |         97 |          0 |         16 |        113 |
-| c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkMessage.js        | JavaScript |          9 |          1 |          2 |         12 |
-| c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkReciever.js       | JavaScript |         11 |          0 |          2 |         13 |
-| c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkSender.js         | JavaScript |         15 |          0 |          2 |         17 |
-| c:\xampp\htdocs\Client\CI328-Client\game\network\NetworkTransceiver.js    | JavaScript |         14 |          0 |          2 |         16 |
-| c:\xampp\htdocs\Client\CI328-Client\game\scenes\TestScene.js              | JavaScript |         24 |          0 |          6 |         30 |
-| c:\xampp\htdocs\Client\CI328-Client\game\systems\NetworkedPlayerSystem.js | JavaScript |         40 |          3 |          9 |         52 |
-| Total                                                                     |            |        238 |          9 |         46 |        293 |
-+---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                        | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp2\htdocs\NetworkedPIGMjs\OpCodes.xlsx                                                   | Excel      |         76 |          0 |          0 |         76 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\assets\maps\TestMap.js                                         | JavaScript |         41 |          0 |          0 |         41 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\assets\maps\TestMap.json                                       | JSON       |        717 |          0 |          0 |        717 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\assets\tilesets\Debug.json                                     | JSON       |        300 |          0 |          0 |        300 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\base.js                                             | JavaScript |         92 |         40 |         15 |        147 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\compCreator.js                           | JavaScript |         16 |          0 |          5 |         21 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\component.js                             | JavaScript |         12 |          8 |          2 |         22 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\animatorComponent.js                | JavaScript |         18 |         10 |          3 |         31 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\bulletComponent.js                  | JavaScript |         16 |         10 |          2 |         28 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\buttonComponent.js                  | JavaScript |         10 |          6 |          0 |         16 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\colliderComponent.js                | JavaScript |         31 |         16 |          6 |         53 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\doorComponent.js                    | JavaScript |         16 |         14 |          6 |         36 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\enemyComponent.js                   | JavaScript |         18 |         10 |          1 |         29 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\gunComponent.js                     | JavaScript |         16 |          8 |          2 |         26 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\barrel.js              | JavaScript |         11 |          3 |          0 |         14 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\playerShotgunBarrel.js | JavaScript |         10 |          3 |          0 |         13 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\playerSpreadBarrel.js  | JavaScript |         10 |          3 |          0 |         13 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\slowEnemyBarrel.js     | JavaScript |          9 |          3 |          0 |         12 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\barrels\standardBarrel.js      | JavaScript |          3 |          3 |          1 |          7 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\playerFastTrigger.js  | JavaScript |          9 |          3 |          1 |         13 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\playerSlowTrigger.js  | JavaScript |          9 |          3 |          1 |         13 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\slowEnemyTrigger.js   | JavaScript |          8 |          3 |          0 |         11 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\standardTrigger.js    | JavaScript |          7 |          3 |          0 |         10 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\guns\triggers\trigger.js            | JavaScript |          9 |          3 |          0 |         12 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickupComponent.js                  | JavaScript |         21 |         19 |          4 |         44 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickups\healthPickup.js             | JavaScript |         10 |         10 |          2 |         22 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\pickups\speedPickup.js              | JavaScript |          7 |          8 |          0 |         15 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\playerComponent.js                  | JavaScript |         24 |         12 |          2 |         38 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\game\rigidbodyComponent.js               | JavaScript |         15 |         10 |          2 |         27 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\font.js                           | JavaScript |         13 |         10 |          2 |         25 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\renderComponent.js                | JavaScript |         13 |         10 |          2 |         25 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\components\render\sprite.js                         | JavaScript |         14 |          7 |          1 |         22 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\entity.js                                           | JavaScript |         46 |          8 |         11 |         65 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\animatorSystem.js                      | JavaScript |         46 |         26 |          8 |         80 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\bulletSystem.js                        | JavaScript |         27 |         22 |          6 |         55 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\buttonSystem.js                        | JavaScript |         44 |          0 |         10 |         54 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\colliderSystem.js                      | JavaScript |         48 |         40 |         10 |         98 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\doorSystem.js                          | JavaScript |         21 |         17 |          3 |         41 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\enemySystem.js                         | JavaScript |         82 |         53 |         23 |        158 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\gunSystem.js                           | JavaScript |         75 |         57 |         20 |        152 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\pickupSystem.js                        | JavaScript |         19 |         16 |          3 |         38 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\playerSystem.js                        | JavaScript |        160 |         76 |         33 |        269 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\rigidCheckerSystem.js                  | JavaScript |         57 |         29 |         17 |        103 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\game\rigidMoverSystem.js                    | JavaScript |         14 |         11 |          3 |         28 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\fontRenderer.js               | JavaScript |         51 |         34 |         16 |        101 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\spriteRenderer.js             | JavaScript |         41 |         31 |         11 |         83 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\renderSystems\uiRenderer.js                 | JavaScript |          9 |         10 |          2 |         21 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\ecs\systems\system.js                                   | JavaScript |         83 |         38 |         27 |        148 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\pigm.js                                                 | JavaScript |         18 |         32 |          4 |         54 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\gameLevel.js                                     | JavaScript |        204 |         74 |         41 |        319 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\gameOver.js                                      | JavaScript |         31 |         20 |          7 |         58 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\scenes\mainMenu.js                                      | JavaScript |         66 |         30 |         17 |        113 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\camera.js                                         | JavaScript |         53 |         46 |         18 |        117 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\imageLoader.js                                    | JavaScript |         37 |         26 |         10 |         73 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\keyboard.js                                       | JavaScript |         25 |         13 |          7 |         45 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\logger.js                                         | JavaScript |          9 |          1 |          2 |         12 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\mapLoader.js                                      | JavaScript |        129 |         84 |         39 |        252 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\mouse.js                                          | JavaScript |         76 |          2 |         15 |         93 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\rectangle.js                                      | JavaScript |         54 |          4 |          9 |         67 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\scene.js                                          | JavaScript |         71 |         47 |         20 |        138 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\engine\utils\vector2.js                                        | JavaScript |         38 |         18 |          7 |         63 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\NetworkedPIGM.js                                          | JavaScript |         33 |          6 |         10 |         49 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedBall.js                               | JavaScript |          9 |          7 |          0 |         16 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedBrick.js                              | JavaScript |          8 |          7 |          0 |         15 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedPlayer.js                             | JavaScript |          9 |          7 |          0 |         16 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\components\NetworkedPowerUp.js                            | JavaScript |          8 |          7 |          1 |         16 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkManager.js                                 | JavaScript |        183 |         59 |         33 |        275 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkMessage.js                                 | JavaScript |          9 |          3 |          0 |         12 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkReciever.js                                | JavaScript |        197 |          3 |         32 |        232 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkSender.js                                  | JavaScript |         18 |         10 |          4 |         32 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\network\NetworkTransceiver.js                             | JavaScript |         14 |          7 |          2 |         23 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\scenes\TestScene.js                                       | JavaScript |        127 |          0 |         20 |        147 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedBallSystem.js                            | JavaScript |        105 |         39 |         23 |        167 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedBrickSystem.js                           | JavaScript |         44 |          3 |          8 |         55 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedPlayerSystem.js                          | JavaScript |         29 |          2 |          6 |         37 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\game\systems\NetworkedPowerUpSystem.js                         | JavaScript |         23 |          0 |          4 |         27 |
+| c:\xampp2\htdocs\NetworkedPIGMjs\index.html                                                     | HTML       |         94 |          0 |          4 |         98 |
+| Total                                                                                           |            |      4,125 |      1,263 |        606 |      5,994 |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

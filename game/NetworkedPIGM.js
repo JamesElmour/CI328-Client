@@ -4,7 +4,23 @@ class NetworkedPIGM extends Pigm
     {
         super(canvas, bufferCanvas);
         
-        this.Socket = new WebSocket(serverIP);
+        let connected = false;
+
+        window.onbeforeunload = () =>
+        {
+            this.Socket.close();
+        };
+
+        while(!connected)
+        {
+            try
+            {
+                this.Socket = new WebSocket(serverIP);
+                connected = true;
+            }
+            catch(e){}
+        }
+
         this.NetworkManager = new NetworkManager({socket: this.Socket});
         
         // Assign canvas and buffer canvas.

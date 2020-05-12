@@ -9,7 +9,7 @@ class NetworkReciever extends NetworkTransceiver
     {
         let position = data[0];
         
-        if(data.length === 2)
+        if(data.length === 3)
         {
             position = this.bytesToNumber(data[0], data[1]);
         }
@@ -17,10 +17,40 @@ class NetworkReciever extends NetworkTransceiver
         if(window.pigm.scene !== undefined)
             if(window.pigm.scene.systems[1].components.length !== 0)
             {   
+                let player = window.pigm.scene.systems[1].components[0];
+                let opponent = window.pigm.scene.systems[1].components[1];
+
                 if(isPlayer)
-                    window.pigm.scene.systems[1].components[0].parent.position.x = position;
+                {
+                    player.parent.position.x = position;
+                }
                 else
-                    window.pigm.scene.systems[1].components[1].parent.position.x = position;
+                {
+                    opponent.parent.position.x = position;
+                }
+
+                if(isPlayer)
+                {
+                    if(player.lives !== data[2] && data[2] !== undefined)
+                    {
+                        if(player.lives > data[2])
+                            window.pigm.scene.FontRenderer.addText(new Vector2(32, 600), "Life lost! " + data[2] + " remaining.", 1500);
+                        else
+                            window.pigm.scene.FontRenderer.addText(new Vector2(32, 600), "Life gained! " + data[2] + " remaining.", 1500);
+
+                        player.lives = data[2];
+                    }
+                }
+                else if(!isPlayer)
+                {
+                    if(opponent.lives !== data[2] && data[2] !== undefined)
+                    {
+                        if(opponent.lives > data[2])
+                            window.pigm.scene.FontRenderer.addText(new Vector2(32, 300), "Life lost! " + data[2] + " remaining.", 1500);
+                        else
+                            window.pigm.scene.FontRenderer.addText(new Vector2(32, 300), "Life gained! " + data[2] + " remaining.", 1500);
+                    }
+                }
             }
     }
 
@@ -31,11 +61,6 @@ class NetworkReciever extends NetworkTransceiver
         let id      = data[4];
         let xBounce = this.bytesToNumber(data[5], data[6]);
         let yBounce = this.bytesToNumber(data[7], data[8]);
-
-        if(id !== 0)
-        {
-            let a = 2;
-        }
 
         if(window.pigm.scene !== undefined)
             if(window.pigm.scene.systems[0].components.length !== 0)
@@ -87,6 +112,26 @@ class NetworkReciever extends NetworkTransceiver
         setTimeout(() => entity.destroy = true, 10000);
     }
 
+    ballClear(isPlayer, data)
+    {
+        if (isPlayer)
+        {
+            window.pigm.scene.BallSystem.components.forEach(b =>
+            {
+                if(b.parent.name.indexOf("Opponent") !== -1)
+                    b.parent.destroy = true;
+            });
+        }
+        else
+        {
+            window.pigm.scene.BallSystem.components.forEach(b =>
+                {
+                    if(b.parent.name.indexOf("Opponent") === -1)
+                        b.parent.destroy = true;
+                });
+        }
+    }
+
     brickHit(isPlayer, data)
     {
         let x       = this.bytesToNumber(data[0], data[1]);
@@ -126,13 +171,56 @@ class NetworkReciever extends NetworkTransceiver
 
         if(!isPlayer)
         {
-            name = "Opponent_" + name;
+            name = "opponent_" + name;
         }
+
+        let destroyedBrick;
 
         window.pigm.scene.systems[3].components.forEach(brick =>
         {
             if(brick.parent.name === name)
+            {
                 brick.parent.destroy = true;
+                destroyedBrick = brick;
+            }
+        });
+
+        // Create the explosion's parent entity.
+        let entity = new Entity({position: destroyedBrick.parent.position.clone()});
+
+        // Add a sprite to the entity and set its starting image.
+        let sprite = entity.createComponent(Sprite, {image: window.pigm.scene.il.getImage("brick/destory-1.png")});
+
+        // Add the explosion animator, passing through each frame and the sprite.
+        let animator = entity.createComponent(Animator, {frames: [
+            window.pigm.scene.il.getImage("brick/destory-1.png"),
+            window.pigm.scene.il.getImage("brick/destory-2.png"),
+            window.pigm.scene.il.getImage("brick/destory-3.png"),
+            window.pigm.scene.il.getImage("brick/destory-4.png"),
+            window.pigm.scene.il.getImage("brick/destory-5.png")
+        ], sprite: sprite});
+    }
+
+    brickCreate(isPlayer, data)
+    {
+        let x = data[0];
+        let y = data[1];
+        let h = data[2];
+
+        window.pigm.scene.createBrick(x, y, !isPlayer, h);
+
+        if(!isPlayer)
+            console.log("Creating brick: " + x + ", " + y);
+    }
+
+    brickClear(isPlayer, data)
+    {
+        window.pigm.scene.systems[3].components.forEach((x) =>
+        {
+            if((!isPlayer && x.parent.name.indexOf("opponent") !== -1) || (isPlayer && x.parent.name.indexOf("opponent") === -1))
+            {
+                x.parent.destroy = true;
+            }
         });
     }
 

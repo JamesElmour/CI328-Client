@@ -51,7 +51,7 @@ class Scene extends Base
             window.scene.canvasContext.drawImage(window.scene.bufferCanvas, 0, 0);
             
             // Calculate current deltatime.
-            let dt = 0.0074;
+            let dt = 0.00475;
             window.scene.dt = dt;
             window.scene.lastStep = step;
             window.scene.previousTime = window.scene.currentTime;

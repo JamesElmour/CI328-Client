@@ -1,5 +1,12 @@
+/**
+ * Ball component.
+ */
 class NetworkedBall extends Component
 {
+    /**
+     * Create Ball with direction and speed opts.
+     * @param {*} opts 
+     */
     constructor(opts)
     {
         super(opts);
